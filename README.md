@@ -1,4 +1,4 @@
-# Project: Landing Page
-Foundations Course
+# The Odin Project
 
-View the page [here](https://azaespa.github.io/01-Landing-Page/Landing-Page/index.html)
+Foundations Course Projects
+01. [Landing Page](https://azaespa.github.io/01-Landing-Page/Landing-Page/index.html)
