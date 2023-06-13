@@ -1,3 +1,6 @@
+const rockButton = document.querySelector(".rock"),
+        paperButton = document.querySelector(".paper"),
+        scissorsButton = document.querySelector(".scissors");
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
 
@@ -59,6 +62,21 @@ function playRound(player, computer)
     }
 }
 
+function handleRockButton()
+{
+    playerSelection = "Rock";
+}
+
+function handlePaperButton()
+{
+    playerSelection = "Paper";
+}
+
+function handleScissorsButton()
+{
+    playerSelection = "Scissors";
+}
+
 function game()
 {
     let score = [0,0];
@@ -90,6 +108,9 @@ function game()
 
 function init()
 {
+    rockButton.addEventListener("click", handleRockButton);
+    paperButton.addEventListener("click", handlePaperButton);
+    scissorsButton.addEventListener("click", handleScissorsButton);
     game();
 }
 
