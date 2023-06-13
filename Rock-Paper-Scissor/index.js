@@ -61,8 +61,8 @@ function playRound(player, computer)
 
 function game()
 {
-    let round = 0;
     let score = [0,0];
+    let end = false;
     do 
     {
         let player = prompt("Rock/Paper/Scissors?").toLowerCase();
@@ -79,9 +79,13 @@ function game()
                 score[1] += 1
             }
             console.log("Player: %i Computer: %i\n", score[0], score[1]);
-            round++;
         }
-    } while (round < 5);
+        if (score[0] == 5 ||
+            score[1] == 5)
+        {
+            end = true;
+        }
+    } while (!end);
 }
 
 function init()
