@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+
+:root {
+    --dark-purle: #31263E;
+    --hunyadi-yellow: #eca72c;
+}
+
+* {
+    font-family: 'Lalezar', cursive;
+    color: white;
+}
+
+body {
+    background-color: var(--dark-purle);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 68px;
+    font-weight: lighter;
+}
+
+.rock {
+    height: 190px;
+    width: 150px;
+    background-image: url("src/rock.png");
+    background-size: contain;
+}
+
+.paper {
+    height: 190px;
+    width: 150px;
+    background-image: url("src/paper.png");
+    background-size: contain;
+}
+
+.scissors {
+    height: 190px;
+    width: 150px;
+    background-image: url("src/scissor.png");
+    background-size: contain;
+}
+
+.section-3 .content {
+    font-size: 48px;
+    display: flex;
+    gap: 20px;
+}
