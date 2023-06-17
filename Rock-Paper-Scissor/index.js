@@ -1,8 +1,18 @@
+const section3 = document.querySelector(".section-3");
+
 const rockButton = document.querySelector(".rock"),
         paperButton = document.querySelector(".paper"),
         scissorsButton = document.querySelector(".scissors");
+
+const result = section3.querySelector(".result");
+
+const playerScore = section3.querySelector(".player"),
+        computerScore = section3.querySelector(".computer");
+
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
+
+let computer = getComputerChoice().toLowerCase();
 
 function getComputerChoice()
 {
@@ -19,7 +29,7 @@ function playRound(player, computer)
     if (player == computer)
     {
         stat = 3;
-        console.log("Tie!");
+        result.innerText = "Tie!";
     }
     else
     {
@@ -27,83 +37,86 @@ function playRound(player, computer)
             computer == "rock")
         {
             stat = 0;
-            console.log("You win! %s beats %s", player, computer);
+            result.innerText = `You win! ${player} beats ${computer}`;
         }
         else if (player == "scissors" &&
                 computer == "paper")
         {
             stat = 0;
-            console.log("You win! %s beats %s", player, computer);
+            result.innerText = `You win! ${player} beats ${computer}`;
         }
         else if (player == "rock" &&
                 computer == "scissors")
         {
             stat = 0;
-            console.log("You win! %s beats %s", player, computer);
+            result.innerText = `You win! ${player} beats ${computer}`;
         }
         else if (player == "rock" &&
                 computer == "paper")
         {
             stat = 1;
-            console.log("You lose! %s beats %s", player, computer);
+            result.innerText = `You lose! ${player} beats ${computer}`;
         }
         else if (player == "paper" &&
                 computer == "scissors")
         {
             stat = 1;
-            console.log("You lose! %s beats %s", player, computer);
+            result.innerText = `You lose! ${player} beats ${computer}`;
         }
         else if (player == "scissors" &&
                 computer == "rock")
         {
             stat = 1;
-            console.log("You lose! %s beats %s", player, computer);
+            result.innerText = `You lose! ${player} beats ${computer}`;
         }
     }
 }
 
 function handleRockButton()
 {
-    playerSelection = "Rock";
+    playerSelection = "rock";
+    playRound(playerSelection, computer);
 }
 
 function handlePaperButton()
 {
-    playerSelection = "Paper";
+    playerSelection = "paper";
+    playRound(playerSelection, computer);
 }
 
 function handleScissorsButton()
 {
-    playerSelection = "Scissors";
+    playerSelection = "scissors";
+    playRound(playerSelection, computer);
 }
 
 function game()
 {
     let score = [0,0];
     let end = false;
-    do 
-    {
-        let player = prompt("Rock/Paper/Scissors?").toLowerCase();
-        let computer = getComputerChoice().toLowerCase();
-        playRound(player, computer);
-        if (stat != 3)
-        {
-            if (stat == 0)
-            {
-                score[0] += 1;
-            }
-            else if (stat == 1)
-            {
-                score[1] += 1
-            }
-            console.log("Player: %i Computer: %i\n", score[0], score[1]);
-        }
-        if (score[0] == 5 ||
-            score[1] == 5)
-        {
-            end = true;
-        }
-    } while (!end);
+    // do 
+    // {
+    //     let player = prompt("Rock/Paper/Scissors?").toLowerCase();
+    //     let computer = getComputerChoice().toLowerCase();
+    //     playRound(player, computer);
+    //     if (stat != 3)
+    //     {
+    //         if (stat == 0)
+    //         {
+    //             score[0] += 1;
+    //         }
+    //         else if (stat == 1)
+    //         {
+    //             score[1] += 1
+    //         }
+    //         console.log("Player: %i Computer: %i\n", score[0], score[1]);
+    //     }
+    //     if (score[0] == 5 ||
+    //         score[1] == 5)
+    //     {
+    //         end = true;
+    //     }
+    // } while (!end);
 }
 
 function init()
