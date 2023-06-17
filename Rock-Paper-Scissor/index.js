@@ -6,13 +6,13 @@ const rockButton = document.querySelector(".rock"),
 
 const result = section3.querySelector(".result");
 
-const playerScore = section3.querySelector(".player"),
-        computerScore = section3.querySelector(".computer");
+const scores = section3.querySelector(".scores");
 
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
+let score = [0,0];
 
-let computer = getComputerChoice().toLowerCase();
+let comp = getComputerChoice().toLowerCase();
 
 function getComputerChoice()
 {
@@ -70,53 +70,60 @@ function playRound(player, computer)
             result.innerText = `You lose! ${player} beats ${computer}`;
         }
     }
+    game();
+    comp = getComputerChoice().toLowerCase();
+    
 }
-
+console.log(comp);
 function handleRockButton()
 {
     playerSelection = "rock";
-    playRound(playerSelection, computer);
+    playRound(playerSelection, comp);
 }
 
 function handlePaperButton()
 {
     playerSelection = "paper";
-    playRound(playerSelection, computer);
+    playRound(playerSelection, comp);
 }
 
 function handleScissorsButton()
 {
     playerSelection = "scissors";
-    playRound(playerSelection, computer);
+    playRound(playerSelection, comp);
 }
 
 function game()
 {
-    let score = [0,0];
-    let end = false;
-    // do 
-    // {
-    //     let player = prompt("Rock/Paper/Scissors?").toLowerCase();
-    //     let computer = getComputerChoice().toLowerCase();
-    //     playRound(player, computer);
-    //     if (stat != 3)
-    //     {
-    //         if (stat == 0)
-    //         {
-    //             score[0] += 1;
-    //         }
-    //         else if (stat == 1)
-    //         {
-    //             score[1] += 1
-    //         }
-    //         console.log("Player: %i Computer: %i\n", score[0], score[1]);
-    //     }
-    //     if (score[0] == 5 ||
-    //         score[1] == 5)
-    //     {
-    //         end = true;
-    //     }
-    // } while (!end);
+    if (stat != 3)
+    {
+        if (stat == 0)
+        {
+            score[0] += 1;
+        }
+        else if (stat == 1)
+        {
+            score[1] += 1
+        }
+        scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
+    }
+    if (score[0] == 5)
+    {
+        result.innerText = "The winner is Player";
+        endGame();
+    } 
+    else if (score[1] == 5) 
+    {
+        result.innerText = "The winner is Computer";
+        endGame();
+    }
+}
+
+function endGame()
+{
+    score[0] = 0;
+    score[1] = 0;
+    scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
 }
 
 function init()
@@ -124,7 +131,6 @@ function init()
     rockButton.addEventListener("click", handleRockButton);
     paperButton.addEventListener("click", handlePaperButton);
     scissorsButton.addEventListener("click", handleScissorsButton);
-    game();
 }
 
 init();
