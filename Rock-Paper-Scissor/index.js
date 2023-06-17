@@ -1,12 +1,15 @@
+const floatMenu = document.querySelector(".float-menu");
+const section2 = document.querySelector(".section-2");
 const section3 = document.querySelector(".section-3");
 
-const rockButton = document.querySelector(".rock"),
-        paperButton = document.querySelector(".paper"),
-        scissorsButton = document.querySelector(".scissors");
+const startBtn = floatMenu.querySelector(".start-btn");
 
-const result = section3.querySelector(".result");
+const rockButton = section2.querySelector(".rock"),
+        paperButton = section2.querySelector(".paper"),
+        scissorsButton = section2.querySelector(".scissors");
 
-const scores = section3.querySelector(".scores");
+const result = section3.querySelector(".result"),
+    scores = section3.querySelector(".scores");
 
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
@@ -74,7 +77,7 @@ function playRound(player, computer)
     comp = getComputerChoice().toLowerCase();
     
 }
-console.log(comp);
+
 function handleRockButton()
 {
     playerSelection = "rock";
@@ -126,8 +129,14 @@ function endGame()
     scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
 }
 
+function handleStartBtn()
+{
+    console.log("start button is working");
+}
+
 function init()
 {
+    startBtn.addEventListener("click", handleStartBtn);
     rockButton.addEventListener("click", handleRockButton);
     paperButton.addEventListener("click", handlePaperButton);
     scissorsButton.addEventListener("click", handleScissorsButton);
