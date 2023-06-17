@@ -18,6 +18,20 @@ body {
     justify-content: center;
 }
 
+.section-1, .section-2, .section-3 {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 h1 {
     font-size: 68px;
     font-weight: lighter;
@@ -47,5 +61,15 @@ h1 {
 .section-3 .content {
     font-size: 48px;
     display: flex;
+    flex-direction: column;
+}
+
+.section-3 .content .scores {
+    font-size: 48px;
+    display: flex;
     gap: 20px;
+}
+
+p {
+    margin: 0;
 }
