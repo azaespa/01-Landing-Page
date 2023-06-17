@@ -127,11 +127,17 @@ function endGame()
     score[0] = 0;
     score[1] = 0;
     scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
+    floatMenu.classList.add("show");
+    floatMenu.classList.remove("hide");
 }
 
 function handleStartBtn()
 {
-    console.log("start button is working");
+    if (floatMenu.classList.contains("show"))
+    {
+        floatMenu.classList.add("hide");
+        floatMenu.classList.remove("show");
+    }
 }
 
 function init()
