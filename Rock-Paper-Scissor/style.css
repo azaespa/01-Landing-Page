@@ -25,11 +25,10 @@ img {
   }
 
 body {
-    height: 100vh;
     background-image: url(src/background.jpg);
-    background-position: 15%;
+    background-position: 25%;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,6 +67,14 @@ body {
     background-color: rgba(255, 255, 255, 0.32);
     border-radius: 10px;
     height: 400px;
+}
+
+.section-2 .content {
+    flex-direction: column;
+}
+
+.cards-arena {
+    margin-bottom: 20px;
 }
 
 .card-player {
@@ -127,6 +134,10 @@ body {
     font-size: 20px;
     
     color: black;
+}
+
+.result {
+    font-size: 20px;
 }
 
 

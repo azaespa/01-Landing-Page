@@ -1,15 +1,17 @@
 const floatMenu = document.querySelector(".float-menu");
+const section2 = document.querySelector(".section-2");
 const section3 = document.querySelector(".section-3");
 const section4 = document.querySelector(".section-4");
 
 const startBtn = floatMenu.querySelector(".start-btn");
 
+const result = section2.querySelector(".result");
+
 const rockButton = section3.querySelector(".rock-btn"),
         paperButton = section3.querySelector(".paper-btn"),
         scissorButton = section3.querySelector(".scissor-btn");
 
-const result = section4.querySelector(".result"),
-    scores = section4.querySelector(".scores");
+const scores = section4.querySelector(".scores");
 
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
