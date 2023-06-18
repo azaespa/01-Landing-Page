@@ -1,17 +1,16 @@
 const floatMenu = document.querySelector(".float-menu");
 const section2 = document.querySelector(".section-2");
 const section3 = document.querySelector(".section-3");
-const section4 = document.querySelector(".section-4");
 
 const startBtn = floatMenu.querySelector(".start-btn");
 
-const result = section2.querySelector(".result");
+const result = section2.querySelector(".result"),
+        playerScore = section2.querySelector("#player-score"),
+        computerScore = section2.querySelector("#computer-score");
 
 const rockButton = section3.querySelector(".rock-btn"),
         paperButton = section3.querySelector(".paper-btn"),
         scissorButton = section3.querySelector(".scissor-btn");
-
-const scores = section4.querySelector(".scores");
 
 const selection = ["Rock", "Paper", "Scissors"];
 let stat = 0;
@@ -106,27 +105,27 @@ function game()
         {
             score[1] += 1
         }
-        scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
+        playerScore.innerText = score[0];
+        computerScore.innerText = score[1];
     }
     if (score[0] == 5)
     {
         result.innerText = "The winner is Player";
-        endGame();
+        endGame("win", "lose");
     } 
     else if (score[1] == 5) 
     {
         result.innerText = "The winner is Computer";
-        endGame();
+        endGame("lose", "win");
     }
 }
 
-function endGame()
+function endGame(player, computer)
 {
     score[0] = 0;
     score[1] = 0;
-    scores.innerText = `Player: ${score[0]} Computer: ${score[1]}`;
-    floatMenu.classList.add("show");
-    floatMenu.classList.remove("hide");
+    floatMenu.classList.add("show", player);
+    floatMenu.classList.remove("hide", computer);
 }
 
 function handleStartBtn()
@@ -135,6 +134,8 @@ function handleStartBtn()
     {
         floatMenu.classList.add("hide");
         floatMenu.classList.remove("show");
+        playerScore.innerText = 0;
+        computerScore.innerText = 0;
     }
 }
 

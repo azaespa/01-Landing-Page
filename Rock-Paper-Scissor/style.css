@@ -75,9 +75,13 @@ body {
 
 .cards-arena {
     margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.card-player {
+.card-player, .card-computer {
     height: 250px;
     width: 250px;
     background-color: white;
@@ -110,7 +114,7 @@ body {
     transform: translateX(-120%);
 }
 
-.card-weapon {
+.card-player-weapon {
     height: 80%;
     width: 70%;
     display: flex;
@@ -119,9 +123,34 @@ body {
     border-radius: 10px 0px 0px 10px;
 }
 
-.card-weapon img{ 
+.card-player-weapon img{ 
     height: 130%;
     transform: rotate(90deg) translateY(-11%) translateX(-14%);
+}
+
+.card-computer-weapon {
+    height: 80%;
+    width: 70%;
+    display: flex;
+    align-items: right;
+    background-color: rgba(82, 82, 82, 0.411);
+    border-radius: 0px 10px 10px 0px;
+}
+
+.card-computer-weapon img{ 
+    height: 130%;
+    transform: rotate(90deg) translateY(4%) translateX(-14%) scaleY(-1);
+}
+
+.card-computer-score {
+    width: 20%;
+}
+
+.card-computer-score p {
+    color: black;
+    font-size: 140px;
+    font-weight: 900;
+    transform: translateX(-45%);
 }
 
 .card-text {
@@ -136,8 +165,17 @@ body {
     color: black;
 }
 
+.vs {
+    font-size: 40px;
+}
+
 .result {
     font-size: 20px;
+}
+
+.section-3 .content {
+    display: flex;
+    gap: 20px;
 }
 
 
@@ -228,4 +266,13 @@ button {
 
 .hide {
     display: none;
+}
+
+.win {
+    background-color: rgba(0, 128, 0, 0.5);
+}
+
+.lose {
+
+    background-color: rgba(128, 58, 0, 0.5);
 }

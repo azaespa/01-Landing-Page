@@ -7,7 +7,7 @@
     <title>Rock Paper Scissors</title>
 </head>
 <body>
-    <menu class="float-menu hide">
+    <menu class="float-menu show">
         <h1 class="menu">Menu</h1>
         <button class="start-btn">Start</button>
     </menu>
@@ -24,9 +24,9 @@
                 <div class="card-player">
                     <div class="card-section1">
                         <div class="card-player-score">
-                            <p>4</p>
+                            <p id="player-score">0</p>
                         </div>
-                        <div class="card-weapon">
+                        <div class="card-player-weapon">
                             <img src="src/paper.png" alt="">
                         </div>
                     </div>
@@ -34,10 +34,26 @@
                         <p>Player</p>
                     </div>
                 </div>
+                <div>
+                    <p class="vs">VS</p>
+                </div>
+                <div class="card-computer">
+                    <div class="card-section1">
+                        <div class="card-computer-weapon">
+                            <img src="src/rock.png" alt="">
+                        </div>
+                        <div class="card-computer-score">
+                            <p id="computer-score">0</p>
+                        </div>
+                    </div>
+                    <div class="card-text">
+                        <p>Computer</p>
+                    </div>
+                </div>
             </div>
             
             <div class="results">
-                <p class="result"></p>
+                <p class="result">.</p>
             </div>
         </div>
     </section>
@@ -55,14 +71,6 @@
             </button>
         </div>
     </section>
-
-    <div class="section-4">
-        <div class="content">
-            <div class="scores">
-                Player: 0 Computer: 0
-            </div>
-        </div>
-    </div>
     <script src="index.js"></script>
 </body>
 </html>
