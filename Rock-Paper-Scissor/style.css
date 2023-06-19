@@ -66,6 +66,7 @@ body {
     background-color: rgba(255, 255, 255, 0.32);
     border-radius: 10px;
     height: 400px;
+    width: 750px;
 }
 
 .section-2 .content {
@@ -168,10 +169,6 @@ body {
     font-size: 40px;
 }
 
-.result {
-    font-size: 20px;
-}
-
 .section-3 .content {
     display: flex;
     gap: 20px;
@@ -179,9 +176,8 @@ body {
 
 
 .rock-btn {
-    height: 190px;
+    height: 194px;
     width: 150px;
-    padding: 0;
 }
 
 .rock-btn img {
@@ -191,11 +187,11 @@ body {
 }
 
 .rock-btn:hover img {
-    transform: scale(1.3) translateY(-11%);
+    transform: scale(1.2) translateY(-8%);
 }
 
 .paper-btn {
-    height: 190px;
+    height: 194px;
     width: 150px;
 }
 
@@ -206,13 +202,12 @@ body {
 }
 
 .paper-btn:hover img {
-    transform: scale(1.3) translateY(-11%);
+    transform: scale(1.2) translateY(-8%);
 }
 
 .scissor-btn {
-    height: 190px;
+    height: 194px;
     width: 150px;
-    padding: 0;
 }
 
 .scissor-btn img {
@@ -221,8 +216,12 @@ body {
     transition: all .25s ease-in-out;
 }
 
+.scissor-btn:hover img {
+    transform: scale(1.2) translateY(-8%);
+}
+
 .go-btn {
-    height: 190px;
+    height: 194px;
     width: 150px;
 }
 
@@ -236,20 +235,25 @@ body {
     transform: scale(1.3) translateY(-11%);
 }
 
-.go-btn:disabled:hover {
+.rock-btn:disabled img, .paper-btn:disabled img, .scissor-btn:disabled img {
+    opacity: 50%;
+}
+
+.rock-btn:disabled:hover, .paper-btn:disabled:hover, .scissor-btn:disabled:hover, .go-btn:disabled:hover {
     cursor: default;
 }
 
-.go-btn:disabled:hover p {
+.rock-btn:disabled:hover img, .paper-btn:disabled:hover img, .scissor-btn:disabled:hover img, .go-btn:disabled:hover p {
     transform: none;
-}
-
-.scissor-btn:hover img {
-    transform: scale(1.3) translateY(-11%);
 }
 
 .rock-btn:hover, .paper-btn:hover, .scissor-btn:hover, .go-btn:hover {
     cursor: pointer;
+}
+
+.lock {
+    border: 4px solid rgba(255, 0, 0, 0.363);
+    transition: all .25s ease-in-out;
 }
 
 button {
@@ -269,6 +273,10 @@ button {
     height: 100%;
     width: 100%;
     background-color: rgba(0, 128, 0, 0.5);
+}
+
+.result {
+    font-size: 40px;
 }
 
 .start-btn {
@@ -301,7 +309,7 @@ button {
 
 .player-anim {
     animation-name: move;
-    animation-duration: 3s;
+    animation-duration: 2.25s;
 }
 
 @keyframes move {
@@ -310,13 +318,17 @@ button {
     33% { transform: translateX(0) translateY(0); }
     49% { transform: translateX(0) translateY(-20%) rotate(-30deg); }
     66% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(-5%) translateY(0); }
     82% { transform: translateX(20%) translateY(0); }
+    90% { transform: translateX(-5%) translateY(0); }
     95% { transform: translateX(0) translateY(0); }
+    97% { transform: translateX(2%) translateY(0); }
+    100% { transform: translateX(0) translateY(0); }
 }
 
 .computer-anim {
     animation-name: invert-move;
-    animation-duration: 3s;
+    animation-duration: 2.25s;
 }
 
 @keyframes invert-move {
@@ -325,6 +337,10 @@ button {
     33% { transform: translateX(0) translateY(0); }
     49% { transform: translateX(0) translateY(-20%) rotate(30deg); }
     66% { transform: translateX(0) translateY(0); }
+    75% { transform: translateX(5%) translateY(0); }
     82% { transform: translateX(-20%) translateY(0); }
+    90% { transform: translateX(5%) translateY(0); }
     95% { transform: translateX(0) translateY(0); }
+    97% { transform: translateX(-2%) translateY(0); }
+    100% { transform: translateX(0) translateY(0); }
 }

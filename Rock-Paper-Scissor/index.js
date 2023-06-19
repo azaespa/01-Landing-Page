@@ -2,10 +2,10 @@ const floatMenu = document.querySelector(".float-menu");
 const section2 = document.querySelector(".section-2");
 const section3 = document.querySelector(".section-3");
 
-const startBtn = floatMenu.querySelector(".start-btn");
+const startBtn = floatMenu.querySelector(".start-btn"),
+    resultText = floatMenu.querySelector(".result");
 
-const result = section2.querySelector(".result"),
-        playerScore = section2.querySelector("#player-score"),
+const playerScore = section2.querySelector("#player-score"),
         computerScore = section2.querySelector("#computer-score"),
         playerWeapon = section2.querySelector("#player-weapon"),
         computerWeapon = section2.querySelector("#computer-weapon"),
@@ -38,7 +38,6 @@ function playRound(p_player, p_computer)
     if (p_player == p_computer)
     {
         stat = 3;
-        result.innerText = "Tie!";
     }
     else
     {
@@ -46,37 +45,31 @@ function playRound(p_player, p_computer)
             p_computer == "rock")
         {
             stat = 0;
-            result.innerText = `You win! ${p_player} beats ${p_computer}`;
         }
         else if (p_player == "scissor" &&
                 p_computer == "paper")
         {
             stat = 0;
-            result.innerText = `You win! ${p_player} beats ${p_computer}`;
         }
         else if (p_player == "rock" &&
                 p_computer == "scissor")
         {
             stat = 0;
-            result.innerText = `You win! ${p_player} beats ${p_computer}`;
         }
         else if (p_player == "rock" &&
                 p_computer == "paper")
         {
             stat = 1;
-            result.innerText = `You lose! ${p_player} beats ${p_computer}`;
         }
         else if (p_player == "paper" &&
                 p_computer == "scissor")
         {
             stat = 1;
-            result.innerText = `You lose! ${p_player} beats ${p_computer}`;
         }
         else if (p_player == "scissor" &&
                 p_computer == "rock")
         {
             stat = 1;
-            result.innerText = `You lose! ${p_player} beats ${p_computer}`;
         }
     }
     game();
@@ -85,16 +78,32 @@ function playRound(p_player, p_computer)
 function handleRockButton()
 {
     player = "rock";
+    rockButton.classList.add("lock");
+    paperButton.classList.remove("lock");
+    scissorButton.classList.remove("lock");
 }
 
 function handlePaperButton()
 {
     player = "paper";
+    paperButton.classList.add("lock");
+    rockButton.classList.remove("lock");
+    scissorButton.classList.remove("lock");
 }
 
 function handlescissorButton()
 {
     player = "scissor";
+    scissorButton.classList.add("lock");
+    rockButton.classList.remove("lock");
+    paperButton.classList.remove("lock");
+}
+
+function removeButtonLock()
+{
+    rockButton.classList.remove("lock");
+    paperButton.classList.remove("lock");
+    scissorButton.classList.remove("lock");
 }
 
 function game()
@@ -114,12 +123,12 @@ function game()
     }
     if (score[0] == 5)
     {
-        result.innerText = "The winner is Player";
+        resultText.innerText = "You win!";
         endGame("win", "lose");
     } 
     else if (score[1] == 5) 
     {
-        result.innerText = "The winner is Computer";
+        resultText.innerText = "You lose!";
         endGame("lose", "win");
     }
 }
@@ -146,9 +155,12 @@ function handleStartBtn()
 
 function handleGoBtn()
 {
-    time = 3;
-    goBtn.disabled = true;
+    cardPlayer.classList.remove("player-anim");
+    cardComputer.classList.remove("computer-anim");
+    time = 2;
     goBtnText.innerText = time;
+    disableButtons()
+    arenaResetSrc();
     cardPlayer.classList.add("player-anim");
     cardComputer.classList.add("computer-anim");
     countdown = setInterval(handleInterval, 1000);
@@ -165,18 +177,40 @@ function handleInterval()
         arenaReplaceSrc(player, computer);
         computer = getRandomChoice();
         player = getRandomChoice();
-        cardPlayer.classList.remove("player-anim")
-        cardComputer.classList.remove("computer-anim")
-        goBtn.disabled = false;
+        enableButtons();
+        removeButtonLock();
         goBtnText.innerText = "Go";
         clearInterval(countdown);
     }
+}
+
+function disableButtons()
+{
+    goBtn.disabled = true;
+    rockButton.disabled = true;
+    paperButton.disabled = true;
+    scissorButton.disabled = true;
+}
+
+
+function enableButtons()
+{
+    goBtn.disabled = false;
+    rockButton.disabled = false;
+    paperButton.disabled = false;
+    scissorButton.disabled = false;
 }
 
 function arenaReplaceSrc(p_player, p_computer)
 {
     playerWeapon.src = `src/${p_player}.png`;
     computerWeapon.src = `src/${p_computer}.png`;
+}
+
+function arenaResetSrc()
+{
+    playerWeapon.src = `src/rock.png`;
+    computerWeapon.src = `src/rock.png`;
 }
 
 function init()
