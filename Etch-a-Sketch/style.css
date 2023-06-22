@@ -1,4 +1,21 @@
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
+.container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.row {
+    border: 1px solid green;
+    height: 30px;
+    width: 480px;
+    display: flex;
+}
+
+.col {
+    border: 1px solid blue;
+    width: 30px;
+}
+
+.hovered {
+    background-color: black;
 }
