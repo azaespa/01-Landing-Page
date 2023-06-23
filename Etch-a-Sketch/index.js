@@ -40,11 +40,19 @@ function generateBoxes() {
 }
 
 
+let mouseDown = 0;
 
 function handleHover() {
-    if (!this.classList.contains("hovered")) {
+    this.onmousedown = () => {
+        mouseDown = 1;
+    };
+    this.onmouseup = () => {
+        mouseDown = 0;
+    }
+    if (!this.classList.contains("hovered") && mouseDown == 1) {
         this.classList.add("hovered");
     }
+    console.log(mouseDown)
 }
 
 function boxAddEventListener(){
