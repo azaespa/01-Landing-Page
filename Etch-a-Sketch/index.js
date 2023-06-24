@@ -1,5 +1,5 @@
 const container = document.querySelector(".container");
-const gridButton = document.querySelector("button");
+const gridSizeButton = document.querySelector("#grid-size");
 const blackButton = document.querySelector("#black");
 const rainbowButton = document.querySelector("#rainbow");
 
@@ -27,15 +27,10 @@ function handleRainbowButton() {
     isRainbow = true;
 }
 
-function handleClick() {
-    let temp = Number(prompt("Set grid size. Max 100"));
-    if (temp < 101) {
-        removeBoxes();
-        n = temp;
-        generateBoxes();
-    } else {
-        handleClick();
-    }
+function handleGridSize() {
+    removeBoxes();
+    n = this.value;
+    generateBoxes();
 }
 
 function removeBoxes() {
@@ -90,7 +85,7 @@ function boxAddEventListener(){
 
 function init() {
     generateBoxes();
-    gridButton.addEventListener("click", handleClick);
+    gridSizeButton.addEventListener("input", handleGridSize);
     blackButton.addEventListener("click", handleBlackButton);
     rainbowButton.addEventListener("click", handleRainbowButton);
 }

@@ -23,6 +23,10 @@ button {
     width: 5rem;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 .container {
     display: flex;
     flex-direction: column;
