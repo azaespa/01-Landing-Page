@@ -1,9 +1,31 @@
 const container = document.querySelector(".container");
 const gridButton = document.querySelector("button");
+const blackButton = document.querySelector("#black");
+const rainbowButton = document.querySelector("#rainbow");
 
 let boxes = null;
-
 let n = 16;
+let isRainbow = false;
+
+const black = "black";
+const rainbow = () => {
+    const red = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    return `rgb(${red}, ${blue}, ${green})`;
+}
+
+function brushColor() {
+    return isRainbow ? rainbow(): black;
+}
+
+function handleBlackButton() {
+    isRainbow = false;
+}
+
+function handleRainbowButton() {
+    isRainbow = true;
+}
 
 function handleClick() {
     let temp = Number(prompt("Set grid size. Max 100"));
@@ -49,20 +71,28 @@ function handleHover() {
     this.onmouseup = () => {
         mouseDown = 0;
     }
-    if (!this.classList.contains("hovered") && mouseDown == 1) {
-        this.classList.add("hovered");
+
+    if (mouseDown == 1) {
+        this.style.backgroundColor = brushColor();
     }
+}
+
+function handleMouseDown() {
+    this.style.backgroundColor = brushColor();
 }
 
 function boxAddEventListener(){
     for (let i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener("mouseover", handleHover);
+        boxes[i].addEventListener("mouseenter", handleHover);
+        boxes[i].addEventListener("mousedown", handleMouseDown);
     }
 }
 
 function init() {
     generateBoxes();
     gridButton.addEventListener("click", handleClick);
+    blackButton.addEventListener("click", handleBlackButton);
+    rainbowButton.addEventListener("click", handleRainbowButton);
 }
 
 init();
