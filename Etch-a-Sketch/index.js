@@ -2,6 +2,7 @@ const container = document.querySelector(".container");
 const gridSizeButton = document.querySelector("#grid-size");
 const blackButton = document.querySelector("#black");
 const rainbowButton = document.querySelector("#rainbow");
+const borderButton = document.querySelector("#border");
 
 let boxes = null;
 let n = 16;
@@ -56,7 +57,6 @@ function generateBoxes() {
     boxAddEventListener();
 }
 
-
 let mouseDown = 0;
 
 function handleHover() {
@@ -76,10 +76,18 @@ function handleMouseDown() {
     this.style.backgroundColor = brushColor();
 }
 
-function boxAddEventListener(){
+function boxAddEventListener() {
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].addEventListener("mouseenter", handleHover);
         boxes[i].addEventListener("mousedown", handleMouseDown);
+    }
+}
+
+function handleBorder() {
+    if (!container.classList.contains("border")) {
+        container.classList.add("border");
+    } else {
+        container.classList.remove("border");
     }
 }
 
@@ -88,6 +96,7 @@ function init() {
     gridSizeButton.addEventListener("input", handleGridSize);
     blackButton.addEventListener("click", handleBlackButton);
     rainbowButton.addEventListener("click", handleRainbowButton);
+    borderButton.addEventListener("click", handleBorder);
 }
 
 init();

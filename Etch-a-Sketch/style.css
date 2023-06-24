@@ -32,7 +32,8 @@ button:hover {
     flex-direction: column;
     box-sizing: border-box;
     height: 600px;
-    width: 600px
+    width: 600px;
+    border: 1px black solid;
 }
 
 .row {
@@ -43,6 +44,9 @@ button:hover {
 
 .col {
     flex-grow: 1;
+}
+
+.border > .row > .col {
     border: 1px solid rgba(128, 128, 128, 0.25);
 }
 
