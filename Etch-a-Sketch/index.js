@@ -1,5 +1,6 @@
 const container = document.querySelector(".container");
-const gridSizeButton = document.querySelector("#grid-size");
+const gridSizeSlider = document.querySelector("#grid-size");
+const gridSizeValue = document.querySelector("#grid-size-value");
 const blackButton = document.querySelector("#black");
 const rainbowButton = document.querySelector("#rainbow");
 const borderButton = document.querySelector("#border");
@@ -31,6 +32,7 @@ function handleRainbowButton() {
 function handleGridSize() {
     removeBoxes();
     n = this.value;
+    gridSizeValue.innerText = `Grid Size: ${n} x ${n}`;
     generateBoxes();
 }
 
@@ -62,24 +64,19 @@ let mouseDown = 0;
 function handleHover() {
     this.onmousedown = () => {
         mouseDown = 1;
+        this.style.backgroundColor = brushColor();
     };
     this.onmouseup = () => {
         mouseDown = 0;
     }
-
     if (mouseDown == 1) {
         this.style.backgroundColor = brushColor();
     }
 }
 
-function handleMouseDown() {
-    this.style.backgroundColor = brushColor();
-}
-
 function boxAddEventListener() {
     for (let i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener("mouseenter", handleHover);
-        boxes[i].addEventListener("mousedown", handleMouseDown);
+        boxes[i].addEventListener("mouseover", handleHover);
     }
 }
 
@@ -93,7 +90,7 @@ function handleBorder() {
 
 function init() {
     generateBoxes();
-    gridSizeButton.addEventListener("input", handleGridSize);
+    gridSizeSlider.addEventListener("input", handleGridSize);
     blackButton.addEventListener("click", handleBlackButton);
     rainbowButton.addEventListener("click", handleRainbowButton);
     borderButton.addEventListener("click", handleBorder);

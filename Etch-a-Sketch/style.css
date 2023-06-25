@@ -2,12 +2,6 @@
     padding: 0;
     border: 0;
     margin: 0;
-    user-drag: none;
-    -webkit-user-drag: none;
-    user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
 }
 
 body {
@@ -15,6 +9,20 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+#grid-size {
+    margin-top: 3rem;
+    height: 2rem;
+    outline: none;
+    border-radius: 10px;
+}
+
+#grid-size::-webkit-slider-thumb {
+    height: 3rem;
+    width: 3rem;
+    cursor: pointer;
+    z-index: 2;
 }
 
 button {
@@ -44,6 +52,12 @@ button:hover {
 
 .col {
     flex-grow: 1;
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .border > .row > .col {
