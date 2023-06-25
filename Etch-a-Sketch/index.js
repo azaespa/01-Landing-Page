@@ -1,6 +1,7 @@
 const drawingBoard = document.querySelector("#drawing-board");
 const gridSizeSlider = document.querySelector("#grid-size");
 const gridSizeValue = document.querySelector("#grid-size-value");
+const squareCheckBox = document.querySelector("#square-check-box");
 const blackButton = document.querySelector("#black");
 const rainbowButton = document.querySelector("#rainbow");
 const borderButton = document.querySelector("#border");
@@ -61,16 +62,17 @@ function generateBoxes() {
 
 let mouseDown = 0;
 
-function handleHover() {
-    this.onmousedown = () => {
+function handleHover(event) {
+    let box = event.target;
+    box.onmousedown = () => {
         mouseDown = 1;
-        this.style.backgroundColor = brushColor();
+        box.style.backgroundColor = brushColor();
     };
-    this.onmouseup = () => {
+    box.onmouseup = () => {
         mouseDown = 0;
     }
     if (mouseDown == 1) {
-        this.style.backgroundColor = brushColor();
+        box.style.backgroundColor = brushColor();
     }
 }
 
