@@ -1,7 +1,14 @@
+:root {
+    --bc-skyblue: #C6DFEB;
+    --bc-skyblue-dark: #64A9C9;
+    --bc-skyblue-light: #BCE0F0;
+}
+
 * {
     padding: 0;
     border: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -35,13 +42,38 @@ button:hover {
     cursor: pointer;
 }
 
-.container {
+.main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar {
+    background-color: var(--bc-skyblue-light);
+    width: 340px;
+    height: 1000px;
+    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
+    z-index: 1;
+}
+
+.drawing-board-container {
+    background-color: var(--bc-skyblue);
+    height: 1000px;
+    width: 1580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#drawing-board {
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     height: 600px;
-    width: 600px;
+    width: 1200px;
     border: 1px black solid;
+    background-color: white;
 }
 
 .row {

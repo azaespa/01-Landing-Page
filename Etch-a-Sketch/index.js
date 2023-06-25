@@ -1,4 +1,4 @@
-const container = document.querySelector(".container");
+const drawingBoard = document.querySelector("#drawing-board");
 const gridSizeSlider = document.querySelector("#grid-size");
 const gridSizeValue = document.querySelector("#grid-size-value");
 const blackButton = document.querySelector("#black");
@@ -6,7 +6,7 @@ const rainbowButton = document.querySelector("#rainbow");
 const borderButton = document.querySelector("#border");
 
 let boxes = null;
-let n = 16;
+let rowSize = 16;
 let isRainbow = false;
 
 const black = "black";
@@ -31,31 +31,31 @@ function handleRainbowButton() {
 
 function handleGridSize() {
     removeBoxes();
-    n = this.value;
-    gridSizeValue.innerText = `Grid Size: ${n} x ${n}`;
+    rowSize = this.value;
+    gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize * 2}`;
     generateBoxes();
 }
 
 function removeBoxes() {
-    while(container.hasChildNodes()) {
-        container.removeChild(container.firstChild);
+    while(drawingBoard.hasChildNodes()) {
+        drawingBoard.removeChild(drawingBoard.firstChild);
     }
 }
 
 function generateBoxes() {
-    for (let i = 0; i < n; i++)
+    for (let i = 0; i < rowSize; i++)
     {
         let row = document.createElement("div");
         row.classList.add(`row`);
-        for (let j = 0; j < n; j++)
+        for (let j = 0; j < (rowSize * 2); j++)
         {
             let column = document.createElement("div");
             column.classList.add(`col`);
             row.appendChild(column);
         }
-        container.appendChild(row);
+        drawingBoard.appendChild(row);
     }
-    boxes = container.querySelectorAll(".col");
+    boxes = drawingBoard.querySelectorAll(".col");
     boxAddEventListener();
 }
 
@@ -81,10 +81,10 @@ function boxAddEventListener() {
 }
 
 function handleBorder() {
-    if (!container.classList.contains("border")) {
-        container.classList.add("border");
+    if (!drawingBoard.classList.contains("border")) {
+        drawingBoard.classList.add("border");
     } else {
-        container.classList.remove("border");
+        drawingBoard.classList.remove("border");
     }
 }
 
