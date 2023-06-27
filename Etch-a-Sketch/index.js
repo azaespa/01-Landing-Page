@@ -1,14 +1,16 @@
+const drawingBoardContainer = document.querySelector(".drawing-board-container");
 const drawingBoard = document.querySelector("#drawing-board");
 const gridSizeSlider = document.querySelector("#grid-size");
 const gridSizeValue = document.querySelector("#grid-size-value");
-const squareCheckBox = document.querySelector("#square-check-box");
+const squareCheckBox = document.querySelector("#square-check-pixel");
 const blackButton = document.querySelector("#black");
 const rainbowButton = document.querySelector("#rainbow");
 const borderButton = document.querySelector("#border");
 
-let boxes = null;
+let pixels = null;
 let rowSize = 16;
 let isRainbow = false;
+let isToggling = false;
 
 const black = "black";
 const rainbow = () => {
@@ -16,34 +18,38 @@ const rainbow = () => {
     const blue = Math.floor(Math.random() * 256);
     const green = Math.floor(Math.random() * 256);
     return `rgb(${red}, ${blue}, ${green})`;
-}
+};
 
 function brushColor() {
-    return isRainbow ? rainbow(): black;
+    return isRainbow ? rainbow() : black;
 }
 
-function handleBlackButton() {
-    isRainbow = false;
-}
-
-function handleRainbowButton() {
-    isRainbow = true;
+function handleBrushColor(event) {
+    let button = event.target.id;
+    switch(button) {
+        case "black":
+            isRainbow = false;
+            break;
+        case "rainbow":
+            isRainbow = true;
+            break;
+    }
 }
 
 function handleGridSize() {
-    removeBoxes();
+    removePixels();
     rowSize = this.value;
     gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize * 2}`;
-    generateBoxes();
+    generatePixels();
 }
 
-function removeBoxes() {
+function removePixels() {
     while(drawingBoard.hasChildNodes()) {
         drawingBoard.removeChild(drawingBoard.firstChild);
     }
 }
 
-function generateBoxes() {
+function generatePixels() {
     for (let i = 0; i < rowSize; i++)
     {
         let row = document.createElement("div");
@@ -56,30 +62,7 @@ function generateBoxes() {
         }
         drawingBoard.appendChild(row);
     }
-    boxes = drawingBoard.querySelectorAll(".col");
-    boxAddEventListener();
-}
-
-let mouseDown = 0;
-
-function handleHover(event) {
-    let box = event.target;
-    box.onmousedown = () => {
-        mouseDown = 1;
-        box.style.backgroundColor = brushColor();
-    };
-    box.onmouseup = () => {
-        mouseDown = 0;
-    }
-    if (mouseDown == 1) {
-        box.style.backgroundColor = brushColor();
-    }
-}
-
-function boxAddEventListener() {
-    for (let i = 0; i < boxes.length; i++) {
-        boxes[i].addEventListener("mouseover", handleHover);
-    }
+    pixels = drawingBoard.querySelectorAll(".col");
 }
 
 function handleBorder() {
@@ -90,12 +73,42 @@ function handleBorder() {
     }
 }
 
+function enableBrush(event) {
+    let pixel = event.target;
+    isToggling = true;
+
+    if (pixel.className != "col") {
+        return;
+    }
+
+    for (let i = 0; i < pixels.length; i++) {
+        pixels[i].onmouseenter = brush;
+    }
+
+    pixel.style.backgroundColor = brushColor();
+    pixel.onmouseup = disableBrush;
+}
+
+function brush(event) {
+    let pixel = event.target;
+    if (isToggling != true) {
+        return;
+    }
+    pixel.style.backgroundColor = brushColor();
+    pixel.onmouseup = disableBrush;
+}
+
+function disableBrush() {
+    isToggling = false;
+}
+
 function init() {
-    generateBoxes();
+    generatePixels();
     gridSizeSlider.addEventListener("input", handleGridSize);
-    blackButton.addEventListener("click", handleBlackButton);
-    rainbowButton.addEventListener("click", handleRainbowButton);
+    blackButton.addEventListener("click", handleBrushColor);
+    rainbowButton.addEventListener("click", handleBrushColor);
     borderButton.addEventListener("click", handleBorder);
+    drawingBoard.addEventListener("mousedown", enableBrush);
 }
 
 init();
