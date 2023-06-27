@@ -3,15 +3,18 @@ const drawingBoard = document.querySelector("#drawing-board");
 const gridSizeSlider = document.querySelector("#grid-size");
 const gridSizeValue = document.querySelector("#grid-size-value");
 const squareCheckBox = document.querySelector("#square-check-pixel");
-const blackButton = document.querySelector("#black");
-const rainbowButton = document.querySelector("#rainbow");
+const blackButton = document.querySelector("#black-btn");
+const rainbowButton = document.querySelector("#rainbow-btn");
+const eraserButton = document.querySelector("#eraser-btn");
 const borderButton = document.querySelector("#border");
 
 let pixels = null;
 let rowSize = 16;
 let isRainbow = false;
 let isToggling = false;
+let colorBtn = null;
 
+const eraser = "white";
 const black = "black";
 const rainbow = () => {
     const red = Math.floor(Math.random() * 256);
@@ -21,24 +24,26 @@ const rainbow = () => {
 };
 
 function brushColor() {
-    return isRainbow ? rainbow() : black;
+    switch(colorBtn) {
+        case "black-btn":
+            return black;
+        case "rainbow-btn":
+            return rainbow();
+        case "eraser-btn":
+            return eraser;
+        default:
+            return black;
+    }
 }
 
 function handleBrushColor(event) {
-    let button = event.target.id;
-    switch(button) {
-        case "black":
-            isRainbow = false;
-            break;
-        case "rainbow":
-            isRainbow = true;
-            break;
-    }
+    let button = event.target;
+    colorBtn = button.id;
 }
 
 function handleGridSize() {
     removePixels();
-    rowSize = this.value;
+    rowSize = gridSizeSlider.value;
     gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize * 2}`;
     generatePixels();
 }
@@ -107,6 +112,7 @@ function init() {
     gridSizeSlider.addEventListener("input", handleGridSize);
     blackButton.addEventListener("click", handleBrushColor);
     rainbowButton.addEventListener("click", handleBrushColor);
+    eraserButton.addEventListener("click", handleBrushColor);
     borderButton.addEventListener("click", handleBorder);
     drawingBoard.addEventListener("mousedown", enableBrush);
 }
