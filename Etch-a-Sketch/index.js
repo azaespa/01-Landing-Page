@@ -13,7 +13,7 @@ const BLACK = "black";
 
 let pixels = null;
 let rowSize = 16;
-let isToggling = false;
+let isBrushing = false;
 let colorBtnId = null;
 
 function rainbow() {
@@ -40,7 +40,7 @@ function brushColor() {
     }
 }
 
-function removePixels() {
+function destroyPixels() {
     while(drawingBoard.hasChildNodes()) {
         drawingBoard.removeChild(drawingBoard.firstChild);
     }
@@ -68,7 +68,7 @@ function generatePixels() {
 function continueBrushing(event) {
     let pixel = event.target;
 
-    if (isToggling != true) {
+    if (isBrushing != true) {
         return;
     }
 
@@ -77,11 +77,11 @@ function continueBrushing(event) {
 }
 
 function stopBrushing() {
-    isToggling = false;
+    isBrushing = false;
 }
 
 function handleGridSize() {
-    removePixels();
+    destroyPixels();
     rowSize = gridSizeSlider.value;
     gridSizeTxt.innerText = `Grid Size: ${rowSize} x ${rowSize}`;
     generatePixels();
@@ -102,7 +102,7 @@ function handlePixelsBorder() {
 
 function handleBrushState(event) {
     const pixel = event.target;
-    isToggling = true;
+    isBrushing = true;
 
     if (pixel.className != "pixel") {
         return;
@@ -119,6 +119,7 @@ function handleBrushState(event) {
 
 function init() {
     generatePixels();
+
     gridSizeSlider.addEventListener("input", handleGridSize);
     blackBtn.addEventListener("click", handleBrushColor);
     rainbowBtn.addEventListener("click", handleBrushColor);
