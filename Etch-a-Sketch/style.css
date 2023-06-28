@@ -51,22 +51,22 @@ h3 {
 }
 
 .sidebar.left {    
-    box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 4px 0px 40px 0px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar.right > #color-picker {
     appearance: none;
-    height: 200px;
-    width: 200px;
+    height: 165px;
+    width: 165px;
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
 .sidebar.right > #color-picker::-webkit-color-swatch {
-    border-radius: 15px;
+    border-radius: 50%;
     border: none;
-    box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 15px 3px rgba(0, 0, 0, 0.09);
 }
 
 .tools {
@@ -93,18 +93,24 @@ h3 {
     font-weight: bolder;
 }
 
-.sidebar > button {
-    margin-top: 1rem;
-    height: 3rem;
-    width: 5rem;
+button {
+    height: 49px;
+    width: 133px;
 }
 
 button:hover {
     cursor: pointer;
 }
 
+.buttons {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .sidebar.right {
-    box-shadow: -4px 0px 4px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: -4px 0px 40px 0px rgba(0, 0, 0, 0.05);
 }
 
 .sidebar.left > .sample {
