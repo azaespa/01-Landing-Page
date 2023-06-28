@@ -44,7 +44,7 @@ function handleBrushColor(event) {
 function handleGridSize() {
     removePixels();
     rowSize = gridSizeSlider.value;
-    gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize * 2}`;
+    gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize}`;
     generatePixels();
 }
 
@@ -59,7 +59,7 @@ function generatePixels() {
     {
         let row = document.createElement("div");
         row.classList.add(`row`);
-        for (let j = 0; j < (rowSize * 2); j++)
+        for (let j = 0; j < rowSize; j++)
         {
             let column = document.createElement("div");
             column.classList.add(`col`);
@@ -71,10 +71,10 @@ function generatePixels() {
 }
 
 function handleBorder() {
-    if (!drawingBoard.classList.contains("border")) {
-        drawingBoard.classList.add("border");
+    if (!drawingBoard.classList.contains("pixels-border")) {
+        drawingBoard.classList.add("pixels-border");
     } else {
-        drawingBoard.classList.remove("border");
+        drawingBoard.classList.remove("pixels-border");
     }
 }
 

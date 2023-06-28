@@ -11,9 +11,9 @@
         <h3 id="logo">Etch-a-Sketch</h3>
     </header>
     <main class="main-content">
-        <div class="sidebar">         
-            <input type="range" id="grid-size" min="8" max="32" step="8" value="16" list="markers">
-            <p id="grid-size-value">Grid size: 16 x 32</p>
+        <div class="sidebar left">         
+            <input type="range" id="grid-size" min="8" max="64" step="8" value="16" list="markers">
+            <p id="grid-size-value">Grid size: 16 x 16</p>
             <button id="black-btn">Black</button>
             <button id="rainbow-btn">Rainbow</button>
             <button id="eraser-btn">Eraser</button>
@@ -21,7 +21,12 @@
             <button>Undo? Redo?</button>
         </div>
         <div class="drawing-board-container">
-            <div class="border" id="drawing-board"></div>
+            <div class="pixels-border" id="drawing-board"></div>
+        </div>
+        <div class="sidebar right">
+            <div class="sample">
+                <img id="sample-img" src="src/luigi.png" alt="">
+            </div>
         </div>
     </main>
     
