@@ -1,51 +1,43 @@
-const drawingBoardContainer = document.querySelector(".drawing-board-container");
-const drawingBoard = document.querySelector("#drawing-board");
-const gridSizeSlider = document.querySelector("#grid-size");
-const gridSizeValue = document.querySelector("#grid-size-value");
-const squareCheckBox = document.querySelector("#square-check-pixel");
-const blackButton = document.querySelector("#black-btn");
-const rainbowButton = document.querySelector("#rainbow-btn");
-const eraserButton = document.querySelector("#eraser-btn");
-const borderButton = document.querySelector("#border");
+const drawingBoard = document.getElementById("drawing-board");
+
+const gridSizeSlider = document.getElementById("grid-size-slider");
+const gridSizeTxt = document.getElementById("grid-size-text");
+
+const blackBtn = document.getElementById("black-btn");
+const rainbowBtn = document.getElementById("rainbow-btn");
+const eraserBtn = document.getElementById("eraser-btn");
+const pixelsBorderBtn = document.getElementById("pixels-border-btn");
+
+const ERASER = "white";
+const BLACK = "black";
 
 let pixels = null;
 let rowSize = 16;
-let isRainbow = false;
 let isToggling = false;
-let colorBtn = null;
+let colorBtnId = null;
 
-const eraser = "white";
-const black = "black";
-const rainbow = () => {
+function rainbow() {
     const red = Math.floor(Math.random() * 256);
     const blue = Math.floor(Math.random() * 256);
     const green = Math.floor(Math.random() * 256);
+
     return `rgb(${red}, ${blue}, ${green})`;
 };
 
 function brushColor() {
-    switch(colorBtn) {
+    switch(colorBtnId) {
         case "black-btn":
-            return black;
+            return BLACK;
+
         case "rainbow-btn":
             return rainbow();
+
         case "eraser-btn":
-            return eraser;
+            return ERASER;
+
         default:
-            return black;
+            return BLACK;
     }
-}
-
-function handleBrushColor(event) {
-    let button = event.target;
-    colorBtn = button.id;
-}
-
-function handleGridSize() {
-    removePixels();
-    rowSize = gridSizeSlider.value;
-    gridSizeValue.innerText = `Grid Size: ${rowSize} x ${rowSize}`;
-    generatePixels();
 }
 
 function removePixels() {
@@ -58,19 +50,49 @@ function generatePixels() {
     for (let i = 0; i < rowSize; i++)
     {
         let row = document.createElement("div");
-        row.classList.add(`row`);
+        row.classList.add("row");
+
         for (let j = 0; j < rowSize; j++)
         {
-            let column = document.createElement("div");
-            column.classList.add(`col`);
-            row.appendChild(column);
+            let pixel = document.createElement("div");
+            pixel.classList.add("pixel");
+            row.appendChild(pixel);
         }
+
         drawingBoard.appendChild(row);
     }
-    pixels = drawingBoard.querySelectorAll(".col");
+
+    pixels = drawingBoard.querySelectorAll(".pixel");
 }
 
-function handleBorder() {
+function continueBrushing(event) {
+    let pixel = event.target;
+
+    if (isToggling != true) {
+        return;
+    }
+
+    pixel.style.backgroundColor = brushColor();
+    pixel.onmouseup = stopBrushing;
+}
+
+function stopBrushing() {
+    isToggling = false;
+}
+
+function handleGridSize() {
+    removePixels();
+    rowSize = gridSizeSlider.value;
+    gridSizeTxt.innerText = `Grid Size: ${rowSize} x ${rowSize}`;
+    generatePixels();
+}
+
+function handleBrushColor(event) {
+    let button = event.target;
+    colorBtnId = button.id;
+}
+
+function handlePixelsBorder() {
     if (!drawingBoard.classList.contains("pixels-border")) {
         drawingBoard.classList.add("pixels-border");
     } else {
@@ -78,43 +100,31 @@ function handleBorder() {
     }
 }
 
-function enableBrush(event) {
-    let pixel = event.target;
+function handleBrushState(event) {
+    const pixel = event.target;
     isToggling = true;
 
-    if (pixel.className != "col") {
+    if (pixel.className != "pixel") {
         return;
     }
+    
+    pixel.style.backgroundColor = brushColor();
 
     for (let i = 0; i < pixels.length; i++) {
-        pixels[i].onmouseenter = brush;
+        pixels[i].onmouseenter = continueBrushing;
     }
 
-    pixel.style.backgroundColor = brushColor();
-    pixel.onmouseup = disableBrush;
-}
-
-function brush(event) {
-    let pixel = event.target;
-    if (isToggling != true) {
-        return;
-    }
-    pixel.style.backgroundColor = brushColor();
-    pixel.onmouseup = disableBrush;
-}
-
-function disableBrush() {
-    isToggling = false;
+    pixel.onmouseup = stopBrushing;
 }
 
 function init() {
     generatePixels();
     gridSizeSlider.addEventListener("input", handleGridSize);
-    blackButton.addEventListener("click", handleBrushColor);
-    rainbowButton.addEventListener("click", handleBrushColor);
-    eraserButton.addEventListener("click", handleBrushColor);
-    borderButton.addEventListener("click", handleBorder);
-    drawingBoard.addEventListener("mousedown", enableBrush);
+    blackBtn.addEventListener("click", handleBrushColor);
+    rainbowBtn.addEventListener("click", handleBrushColor);
+    eraserBtn.addEventListener("click", handleBrushColor);
+    pixelsBorderBtn.addEventListener("click", handlePixelsBorder);
+    drawingBoard.addEventListener("mousedown", handleBrushState);
 }
 
 init();

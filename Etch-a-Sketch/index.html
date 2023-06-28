@@ -11,13 +11,14 @@
         <h3 id="logo">Etch-a-Sketch</h3>
     </header>
     <main class="main-content">
-        <div class="sidebar left">         
-            <input type="range" id="grid-size" min="8" max="64" step="8" value="16" list="markers">
-            <p id="grid-size-value">Grid size: 16 x 16</p>
+        <div class="sidebar left">      
+            <input type="color" id="color-picker">   
+            <input type="range" id="grid-size-slider" min="8" max="64" step="8" value="16" list="markers">
+            <p id="grid-size-text">Grid size: 16 x 16</p>
             <button id="black-btn">Black</button>
             <button id="rainbow-btn">Rainbow</button>
             <button id="eraser-btn">Eraser</button>
-            <button id="border">Border</button>
+            <button id="pixels-border-btn">Border</button>
             <button>Undo? Redo?</button>
         </div>
         <div class="drawing-board-container">

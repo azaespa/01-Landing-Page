@@ -61,14 +61,28 @@ header > h3 {
     box-shadow: 4px 0px 4px 0px rgba(0, 0, 0, 0.05);
 }
 
-.sidebar > #grid-size {
+.sidebar.left > #color-picker {
+    appearance: none;
+    height: 150px;
+    width: 150px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.sidebar.left > #color-picker::-webkit-color-swatch {
+    border-radius: 50%;
+    border: none;
+}
+
+.sidebar > #grid-size-slider {
     margin-top: 3rem;
     height: 2rem;
     outline: none;
     border-radius: 10px;
 }
 
-.sidebar > #grid-size::-webkit-slider-thumb {
+.sidebar > #grid-size-slider::-webkit-slider-thumb {
     height: 3rem;
     width: 3rem;
     cursor: pointer;
@@ -127,7 +141,7 @@ header > h3 {
     display: flex;
 }
 
-.col {
+.pixel {
     flex-grow: 1;
     user-drag: none;
     -webkit-user-drag: none;
@@ -137,7 +151,7 @@ header > h3 {
     -ms-user-select: none;
 }
 
-.pixels-border > .row > .col {
+.pixels-border > .row > .pixel {
     border: 1px solid rgba(190, 190, 190, 0.25);
 }
 
