@@ -88,7 +88,7 @@ function stopBrushing() {
 function handleGridSize() {
     destroyPixels();
     rowSize = gridSizeSlider.value;
-    gridSizeTxt.innerText = `Grid Size: ${rowSize} x ${rowSize}`;
+    gridSizeTxt.innerText = `${rowSize} x ${rowSize}`;
     generatePixels();
 }
 

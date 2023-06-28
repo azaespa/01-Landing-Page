@@ -7,27 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <h3 id="logo">Etch-a-Sketch</h3>
-    </header>
     <main class="main-content">
         <div class="sidebar left">      
-            <input type="color" id="color-picker">   
-            <input type="range" id="grid-size-slider" min="8" max="64" step="8" value="16" list="markers">
-            <p id="grid-size-text">Grid size: 16 x 16</p>
-            <button id="black-btn">Black</button>
-            <button id="rainbow-btn">Rainbow</button>
-            <button id="eraser-btn">Eraser</button>
-            <button id="pixels-border-btn">Border</button>
-            <!-- <button>Undo? Redo?</button> -->
-        </div>
-        <div class="drawing-board-container">
-            <div class="pixels-border" id="drawing-board"></div>
-        </div>
-        <div class="sidebar right">
             <div class="sample">
                 <img id="sample-img" src="src/luigi.png" alt="">
             </div>
+            
+            <!-- <button>Undo? Redo?</button> -->
+        </div>
+        <div class="drawing-board-container">
+            <h3 id="logo">Etch-a-Sketch</h3>
+            <div class="pixels-border" id="drawing-board"></div>
+            <div class="tools">
+                <button id="pixels-border-btn">Border</button>
+                <input type="range" id="grid-size-slider" min="8" max="64" step="8" value="16" list="markers">
+                <p id="grid-size-text">16 x 16</p>
+            </div>
+        </div>
+        <div class="sidebar right">
+            <input type="color" id="color-picker">
+            <button id="black-btn">Black</button>
+            <button id="rainbow-btn">Rainbow</button>
+            <button id="eraser-btn">Eraser</button>
         </div>
     </main>
     
