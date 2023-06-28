@@ -3,6 +3,7 @@ const drawingBoard = document.getElementById("drawing-board");
 const gridSizeSlider = document.getElementById("grid-size-slider");
 const gridSizeTxt = document.getElementById("grid-size-text");
 
+const colorPicker = document.getElementById("color-picker");
 const blackBtn = document.getElementById("black-btn");
 const rainbowBtn = document.getElementById("rainbow-btn");
 const eraserBtn = document.getElementById("eraser-btn");
@@ -12,9 +13,10 @@ const ERASER = "white";
 const BLACK = "black";
 
 let pixels = null;
+let colorBtnId = null;
 let rowSize = 16;
 let isBrushing = false;
-let colorBtnId = null;
+
 
 function rainbow() {
     const red = Math.floor(Math.random() * 256);
@@ -34,6 +36,9 @@ function brushColor() {
 
         case "eraser-btn":
             return ERASER;
+
+        case "color-picker":
+            return colorPicker.value;
 
         default:
             return BLACK;
@@ -121,10 +126,14 @@ function init() {
     generatePixels();
 
     gridSizeSlider.addEventListener("input", handleGridSize);
+    colorPicker.addEventListener("input", handleBrushColor);
+
+    colorPicker.addEventListener("click", handleBrushColor);
     blackBtn.addEventListener("click", handleBrushColor);
     rainbowBtn.addEventListener("click", handleBrushColor);
     eraserBtn.addEventListener("click", handleBrushColor);
     pixelsBorderBtn.addEventListener("click", handlePixelsBorder);
+
     drawingBoard.addEventListener("mousedown", handleBrushState);
 }
 
