@@ -5,9 +5,13 @@ const gridSizeSlider = document.getElementById("grid-size-slider");
 const gridSizeTxt = document.getElementById("grid-size-text");
 
 const colorPicker = document.getElementById("color-picker");
+const leftBucket = document.getElementById("left-bucket");
+const rightBucket = document.getElementById("right-bucket");
 const blackBtn = document.getElementById("black-btn");
 const rainbowBtn = document.getElementById("rainbow-btn");
 const eraserBtn = document.getElementById("eraser-btn");
+const buttons = document.querySelectorAll(".btn");
+const bucketsChildren = document.querySelectorAll(".buckets > *");
 
 const ERASER = "white";
 const BLACK = "black";
@@ -93,8 +97,14 @@ function handleGridSize() {
 }
 
 function handleBrushColor(event) {
-    let button = event.target;
-    colorBtnId = button.id;
+    let clickedBtn = event.target;
+    colorBtnId = clickedBtn.id;
+
+    for (let button of buttons) {
+        button.classList.remove("active");
+    }
+    
+    clickedBtn.classList.toggle("active");
 }
 
 function handlePixelsBorder() {
@@ -122,15 +132,28 @@ function handleBrushState(event) {
     pixel.onmouseup = stopBrushing;
 }
 
+function handleClickCounter(event) {
+    let clickCounter = event.detail;
+
+    if (clickCounter !== 2) {
+        event.preventDefault();
+    }
+}
+
 function init() {
     generatePixels();
 
     gridLinesCheckbox.addEventListener("input", handlePixelsBorder)
     gridSizeSlider.addEventListener("input", handleGridSize);
     colorPicker.addEventListener("input", handleBrushColor);
+    leftBucket.addEventListener("input", handleBrushColor);
+    rightBucket.addEventListener("input", handleBrushColor);
 
     colorPicker.addEventListener("click", handleBrushColor);
-    // blackBtn.addEventListener("click", handleBrushColor);
+    leftBucket.addEventListener("click", handleBrushColor);
+    leftBucket.addEventListener("click", handleClickCounter);
+    rightBucket.addEventListener("click", handleBrushColor);
+    rightBucket.addEventListener("click", handleClickCounter);
     rainbowBtn.addEventListener("click", handleBrushColor);
     eraserBtn.addEventListener("click", handleBrushColor);
 

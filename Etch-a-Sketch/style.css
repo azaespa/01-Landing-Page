@@ -168,7 +168,12 @@ button:hover, .buckets > *:hover {
     transition: all .25s ease;
 }
 
-.active { 
+#rainbow-btn.active, #eraser-btn.active {
+    color: white;
+    background-color: var(--bc-header);
+}
+
+.buttons .active { 
     border: solid 2px var(--bc-header);
 }
 
@@ -194,6 +199,7 @@ button:hover, .buckets > *:hover {
     width: 49px;
     appearance: none;
     background-color: none;
+    transition: all .25s ease;
 }
 
 .buckets > *::-webkit-color-swatch {
