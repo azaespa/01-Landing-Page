@@ -1,5 +1,6 @@
 const drawingBoard = document.getElementById("drawing-board");
 
+const gridLinesCheckbox = document.getElementById("grid-lines-checkbox");
 const gridSizeSlider = document.getElementById("grid-size-slider");
 const gridSizeTxt = document.getElementById("grid-size-text");
 
@@ -7,7 +8,6 @@ const colorPicker = document.getElementById("color-picker");
 const blackBtn = document.getElementById("black-btn");
 const rainbowBtn = document.getElementById("rainbow-btn");
 const eraserBtn = document.getElementById("eraser-btn");
-const pixelsBorderBtn = document.getElementById("pixels-border-btn");
 
 const ERASER = "white";
 const BLACK = "black";
@@ -98,7 +98,7 @@ function handleBrushColor(event) {
 }
 
 function handlePixelsBorder() {
-    if (!drawingBoard.classList.contains("pixels-border")) {
+    if (gridLinesCheckbox.checked) {
         drawingBoard.classList.add("pixels-border");
     } else {
         drawingBoard.classList.remove("pixels-border");
@@ -125,14 +125,14 @@ function handleBrushState(event) {
 function init() {
     generatePixels();
 
+    gridLinesCheckbox.addEventListener("input", handlePixelsBorder)
     gridSizeSlider.addEventListener("input", handleGridSize);
     colorPicker.addEventListener("input", handleBrushColor);
 
     colorPicker.addEventListener("click", handleBrushColor);
-    blackBtn.addEventListener("click", handleBrushColor);
+    // blackBtn.addEventListener("click", handleBrushColor);
     rainbowBtn.addEventListener("click", handleBrushColor);
     eraserBtn.addEventListener("click", handleBrushColor);
-    pixelsBorderBtn.addEventListener("click", handlePixelsBorder);
 
     drawingBoard.addEventListener("mousedown", handleBrushState);
 }

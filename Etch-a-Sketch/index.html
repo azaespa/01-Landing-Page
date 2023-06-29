@@ -12,22 +12,34 @@
             <div class="sample">
                 <img id="sample-img" src="src/luigi.png" alt="">
             </div>
-            
-            <!-- <button>Undo? Redo?</button> -->
         </div>
+
         <div class="drawing-board-container">
             <h3 id="logo">Etch-a-Sketch</h3>
             <div class="pixels-border" id="drawing-board"></div>
+
             <div class="tools">
-                <button id="pixels-border-btn">Border</button>
+
+                <div class="grid-lines">
+                    <input type="checkbox" id="grid-lines-checkbox" checked>
+                    <label for="grid-lines-checkbox" id="grid-lines-text">Grid Lines</label>
+                </div>
+
                 <input type="range" id="grid-size-slider" min="8" max="64" step="8" value="16" list="markers">
                 <p id="grid-size-text">16 x 16</p>
+
             </div>
         </div>
+
         <div class="sidebar right">
             <input type="color" id="color-picker">
+
             <div class="buttons">
-                <button id="black-btn">Black</button>
+                <div class="buckets">
+                    <input type="color" id="left-bucket">
+                    <input type="color" class="active" id="right-bucket">
+                </div>
+                <!-- <button class="" id="black-btn">Black</button> -->
                 <button id="rainbow-btn">Rainbow</button>
                 <button id="eraser-btn">Eraser</button>
             </div>
