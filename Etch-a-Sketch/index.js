@@ -10,8 +10,8 @@ const rightBucket = document.getElementById("right-bucket");
 const blackBtn = document.getElementById("black-btn");
 const rainbowBtn = document.getElementById("rainbow-btn");
 const eraserBtn = document.getElementById("eraser-btn");
+const clearBtn = document.getElementById("clear-btn");
 const buttons = document.querySelectorAll(".btn");
-const bucketsChildren = document.querySelectorAll(".buckets > *");
 
 const ERASER = "white";
 const BLACK = "black";
@@ -32,9 +32,6 @@ function rainbow() {
 
 function brushColor() {
     switch(colorBtnId) {
-        case "black-btn":
-            return BLACK;
-
         case "rainbow-btn":
             return rainbow();
 
@@ -43,6 +40,12 @@ function brushColor() {
 
         case "color-picker":
             return colorPicker.value;
+
+        case "left-bucket":
+            return leftBucket.value;
+
+        case "right-bucket":
+            return rightBucket.value;
 
         default:
             return BLACK;
@@ -89,6 +92,10 @@ function stopBrushing() {
     isBrushing = false;
 }
 
+//------------------//
+//  EVENT HANDLERS  //
+//------------------//
+
 function handleGridSize() {
     destroyPixels();
     rowSize = gridSizeSlider.value;
@@ -99,7 +106,17 @@ function handleGridSize() {
 function handleBrushColor(event) {
     let clickedBtn = event.target;
     colorBtnId = clickedBtn.id;
+}
 
+function handleBucketColor() {
+    let activeBucket = document.querySelector("input[type='color'].active");
+
+    activeBucket.value = colorPicker.value;
+}
+
+function handleButtonStyle(event) {
+    let clickedBtn = event.target;
+    
     for (let button of buttons) {
         button.classList.remove("active");
     }
@@ -140,24 +157,37 @@ function handleClickCounter(event) {
     }
 }
 
+//-----------------------------//
+//  INITIALIZE EVENT LISTENERS //
+//-----------------------------//
+
 function init() {
     generatePixels();
 
+    colorPicker.addEventListener("input", handleBrushColor);
+    colorPicker.addEventListener("input", handleBucketColor);
     gridLinesCheckbox.addEventListener("input", handlePixelsBorder)
     gridSizeSlider.addEventListener("input", handleGridSize);
-    colorPicker.addEventListener("input", handleBrushColor);
     leftBucket.addEventListener("input", handleBrushColor);
     rightBucket.addEventListener("input", handleBrushColor);
 
+    clearBtn.addEventListener("click", handleGridSize)
     colorPicker.addEventListener("click", handleBrushColor);
+    eraserBtn.addEventListener("click", handleBrushColor);
     leftBucket.addEventListener("click", handleBrushColor);
     leftBucket.addEventListener("click", handleClickCounter);
+    rainbowBtn.addEventListener("click", handleBrushColor);
     rightBucket.addEventListener("click", handleBrushColor);
     rightBucket.addEventListener("click", handleClickCounter);
-    rainbowBtn.addEventListener("click", handleBrushColor);
-    eraserBtn.addEventListener("click", handleBrushColor);
 
     drawingBoard.addEventListener("mousedown", handleBrushState);
+
+    // STYLE
+    eraserBtn.addEventListener("click", handleButtonStyle);
+    leftBucket.addEventListener("click", handleButtonStyle);
+    rainbowBtn.addEventListener("click", handleButtonStyle);
+    rightBucket.addEventListener("click", handleButtonStyle);
+
 }
 
 init();

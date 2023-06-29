@@ -136,6 +136,14 @@ h3 {
     font-weight: bolder;
 }
 
+.tools > #clear-btn {
+    height: 1.5rem;
+    width: 3rem;
+    font-size: .7rem;
+    font-weight: bolder;
+    background-color: white;
+}
+
 .sidebar.right > #color-picker {
     appearance: none;
     height: 165px;
@@ -218,7 +226,4 @@ button:hover, .buckets > *:hover {
 
 .sidebar.right {
     box-shadow: -4px 0px 40px 0px rgba(0, 0, 0, 0.05);
-}
-.hovered {
-    background-color: black;
 }

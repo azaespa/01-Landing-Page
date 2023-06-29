@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Etch-a-Sketch</title>
 </head>
 <body>
     <main class="main-content">
@@ -27,17 +27,17 @@
 
                 <input type="range" id="grid-size-slider" min="8" max="64" step="8" value="16" list="markers">
                 <p id="grid-size-text">16 x 16</p>
-
+                <button id="clear-btn">CLEAR</button>
             </div>
         </div>
 
         <div class="sidebar right">
-            <input type="color" id="color-picker">
+            <input type="color" id="color-picker" value="#FF0000">
 
             <div class="buttons">
                 <div class="buckets">
-                    <input type="color" class="btn" id="left-bucket">
-                    <input type="color" class="btn active" id="right-bucket">
+                    <input type="color" class="btn active" id="left-bucket">
+                    <input type="color" class="btn" id="right-bucket" value="#FFFFFF">
                 </div>
                 <!-- <button class="" id="black-btn">Black</button> -->
                 <button class="btn" id="rainbow-btn">Rainbow</button>
