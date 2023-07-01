@@ -3,10 +3,12 @@
 :root {
     --fc-action-txt: #ffffff7c;
     --fc-main-txt: #ffffff;
+    --fc-others-btn: #27374D;
     --bc-body: #DDE6ED;
     --bc-calculator-body: #27374D;
     --bc-digits-btn: #526D82;
     --bc-operator-btn: #F69906;
+    --bc-others-btn: #9DB2BF;
     --bc-textarea: transparent;
 
     --fw-extra-light: 200;
@@ -50,9 +52,10 @@ body {
 }
 
 .display {
-    border: 3px solid red;
     height: 120px;
     width: 286px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.10) inset;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -76,7 +79,54 @@ input {
 }
 
 .buttons {
-    border: 3px solid red;
     height: 350px;
     width: 286px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.buttons > * {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 60px;
+    font-size: 2.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ac-btn,
+#pm-btn,
+#percent-btn {
+    font-size: 1.25rem;
+}
+
+#zero-btn {
+    width: 135px;
+    padding-left: 1rem;
+    border-radius: 49px;
+    font-size: 2rem;
+    justify-content: flex-start;
+}
+
+.btn.digits {
+    background-color: var(--bc-digits-btn);
+}
+
+.btn.others {
+    color: var(--fc-others-btn);
+    background-color: var(--bc-others-btn);
+}
+
+.btn.operators {
+    background-color: var(--bc-operator-btn);
 }
