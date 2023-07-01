@@ -73,7 +73,7 @@ input {
     padding-right: .5rem;
 }
 
-#result {
+#result-txt {
     height: 73px;
     font-size: 4rem;
 }
@@ -115,7 +115,7 @@ input {
 
 #ac-btn,
 #pm-btn,
-#percent-btn {
+#bs-btn {
     font-size: 1.25rem;
 }
 
@@ -136,7 +136,8 @@ input {
     background-color: var(--bc-others-btn);
 }
 
-.btn.operators {
+.btn.operators,
+.btn.equal {
     background-color: var(--bc-operator-btn);
 }
 
@@ -174,7 +175,7 @@ input {
     
     #ac-btn,
     #pm-btn,
-    #percent-btn {
+    #bs-btn {
         font-size: 1.5rem;
     }
 
