@@ -16,6 +16,8 @@ let operator = null;
 
 function updateActionTakenTxt(element) {
     let op = element.innerText;
+    const num = numbers.length < 2 ? numbers[0] : numbers[1];
+    
     if (element.id == "equals") {
         switch(operator) {
             case "add":
@@ -34,7 +36,8 @@ function updateActionTakenTxt(element) {
         actionTakenTxt.value = `${numbers[0]} ${op} ${numbers[1]} =`;
         return;
     }
-    actionTakenTxt.value = `${numbers[0]} ${op}`;
+
+    actionTakenTxt.value = `${num} ${op}`;
 }
 
 function updateResultTxt(innerText) {
