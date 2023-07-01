@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+
+:root {
+    --fc-action-txt: #ffffff7c;
+    --fc-main-txt: #ffffff;
+    --bc-body: #DDE6ED;
+    --bc-calculator-body: #27374D;
+    --bc-digits-btn: #526D82;
+    --bc-operator-btn: #F69906;
+    --bc-textarea: transparent;
+
+    --fw-extra-light: 200;
+    --fw-regular: 400;
+    --fw-bold: 700;
+}
+
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: var(--fw-regular);
+    color: var(--fc-main-txt);
+}
+
+body {
+    background-color: var(--bc-body);
+}
+
+.right {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator-body {
+    border-radius: 20px;
+    background-color: var(--bc-calculator-body);
+    height: 537px;
+    width: 336px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.display {
+    border: 3px solid red;
+    height: 120px;
+    width: 286px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+input {
+    width: 100%;
+    text-align: right;
+    font-weight: var(--fw-extra-light);
+    background-color: transparent;
+    padding-right: .5rem;
+}
+
+#result {
+    height: 73px;
+    font-size: 4rem;
+}
+
+#action-taken-txt {
+    color: var(--fc-action-txt);
+}
+
+.buttons {
+    border: 3px solid red;
+    height: 350px;
+    width: 286px;
+}
