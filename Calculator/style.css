@@ -137,7 +137,7 @@ input {
 }
 
 .btn.operators,
-.btn.equal {
+.btn.equals {
     background-color: var(--bc-operator-btn);
 }
 
