@@ -155,6 +155,7 @@ function operatorsEventListener() {
 
             isOperatorClicked = true;
             isDigitClicked = false;
+            decimalCounter = 0;
             operator = element.id;
             updateActionTakenTxt(element);
         }))
