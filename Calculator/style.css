@@ -127,7 +127,8 @@ input {
     justify-content: flex-start;
 }
 
-.btn.digits {
+.btn.digits,
+.btn.decimal {
     background-color: var(--bc-digits-btn);
 }
 

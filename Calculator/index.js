@@ -3,16 +3,23 @@ const resultTxt = document.getElementById("result-txt");
 const digitElements = document.getElementsByClassName("digits");
 const operatorElements = document.getElementsByClassName("operators");
 const equalsBtn = document.getElementById("equals");
+const decimal = document.getElementById("decimal");
+const clearBtn = document.getElementById("ac-btn");
 
 const digits = [...digitElements];
 const operators = [...operatorElements];
 
 let isOperatorClicked = false;
 let isDigitClicked = true;
+let isEqualsClicked = false;
+let isLastActionOperator = false;
 
 let numbers = [];
 let addend = null;
 let operator = null;
+let veryLastNum = null;
+let counter = 0;
+let decimalCounter = 0;
 
 function updateActionTakenTxt(element) {
     let op = element.innerText;
@@ -46,8 +53,12 @@ function updateResultTxt(innerText) {
         isOperatorClicked = false;
     };
 
-    if (Number(resultTxt.value) == 0) {
+    if (Number(resultTxt.value) == 0 && !resultTxt.value.includes(".")) {
         resultTxt.value = "";
+    }
+
+    if (innerText == "." && Number(resultTxt.value) == 0) {
+        resultTxt.value = "0"
     }
 
     resultTxt.value += innerText;
@@ -77,15 +88,20 @@ function operate(operatorId) {
     if (numbers.length > 1) {
         numbers.push(Number(resultTxt.value));
         numbers.shift();
+        isLastActionOperator = true;
     } 
 }
 
 function calculate(operatorId) {
+    if (counter < 1) {
+        veryLastNum = Number(resultTxt.value);
+        counter++;
+    }
 
     if (numbers.length == 1) numbers.push(Number(resultTxt.value));
 
-    let firstNumber = numbers[0];
-    let secondNumber = numbers[1];
+    let firstNumber = isLastActionOperator ? numbers[1] : numbers[0];
+    let secondNumber = veryLastNum;
 
     switch(operatorId) {
         case "add":
@@ -103,14 +119,25 @@ function calculate(operatorId) {
     }
     
     numbers[0] = Number(resultTxt.value);
+    numbers[1] = isLastActionOperator ? veryLastNum : numbers[1];
+    isLastActionOperator = false;
+}
 
-    console.log(numbers)
-
+function clearAll() {
+    resultTxt.value = "0";
+    actionTakenTxt.value = "";
+    operator = null;
+    isOperatorClicked = false;
+    isDigitClicked = true;
+    isEqualsClicked = false;
+    counter = 0;
+    decimalCounter = 0;
 }
 
 function digitsEventListener(){
     digits.map(element => 
         element.addEventListener("click", () => {
+            if (isEqualsClicked) clearAll();
             updateResultTxt(element.innerText);
         }));
 }
@@ -136,12 +163,20 @@ function operatorsEventListener() {
 function handleEqualsBtn() {
     calculate(operator)
     updateActionTakenTxt(equalsBtn)
+    isEqualsClicked = true;
+}
+
+function handleDecimalBtn(event) {
+    decimalCounter++;
+    if (decimalCounter < 2) updateResultTxt(decimal.innerText);
 }
 
 function init() {
     digitsEventListener();
     operatorsEventListener();
     equalsBtn.addEventListener("click", handleEqualsBtn);
+    decimal.addEventListener("click", handleDecimalBtn);
+    clearBtn.addEventListener("click", clearAll);
 }
 
 init();
