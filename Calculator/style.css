@@ -25,23 +25,24 @@
     font-size: 16px;
     font-weight: var(--fw-regular);
     color: var(--fc-main-txt);
+    user-select: none;
 }
 
 body {
     background-color: var(--bc-body);
+    height: 100vh;
+    width: 100vw;
 }
 
 .right {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .calculator-body {
-    border-radius: 20px;
-    background-color: var(--bc-calculator-body);
     height: 537px;
     width: 336px;
     display: flex;
@@ -49,6 +50,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    border-radius: 20px;
+    background-color: var(--bc-calculator-body);
+    box-shadow: 8px 6px 15px 0px rgba(0, 0, 0, 0.25);
 }
 
 .display {
@@ -102,6 +106,11 @@ input {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity .05s ease-in-out;
+}
+
+.btn:active {
+    opacity: 0.5;
 }
 
 #ac-btn,
@@ -129,4 +138,48 @@ input {
 
 .btn.operators {
     background-color: var(--bc-operator-btn);
+}
+
+@media (hover: hover) {   
+    .btn:hover {
+        opacity: 0.7;
+    }
+    
+    .btn:hover:active {
+        opacity: 0.5;
+    }
+}
+
+@media (width >= 720px) {
+    .calculator-body {
+        height: 578px;
+        width: 362px;
+    }
+
+    .display {
+        height: 129px;
+        width: 308px;
+    }
+
+    .buttons {
+        height: 377px;
+        width: 308px;
+    }
+
+    .btn {
+        height: 65px;
+        width: 65px;
+        font-size: 2.5rem;
+    }
+    
+    #ac-btn,
+    #pm-btn,
+    #percent-btn {
+        font-size: 1.5rem;
+    }
+
+    #zero-btn {
+        height: 65px;
+        width: 146px;
+    }
 }
