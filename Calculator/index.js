@@ -120,6 +120,13 @@ function operate(operatorId) {
         isLastActionOperator = true;
     } 
 
+    if (resultTxt.scrollWidth > resultTxt.clientWidth) {
+        while (resultTxt.scrollWidth > resultTxt.clientWidth) {
+            fontSize -= 8;
+            resultTxt.style.fontSize = `${fontSize}px`;
+        }
+    }
+
 }
 
 function calculate(operatorId) {
@@ -177,30 +184,38 @@ function clearAll() {
 function digitsEventListener(){
     digits.map(element => 
         element.addEventListener("click", () => {
-            if (isEqualsClicked) clearAll();
-            updateResultTxt(element.innerText);
+            handleDigits(element);
         }));
+}
+
+function handleDigits(element) {
+    if (isEqualsClicked) clearAll();
+    updateResultTxt(element.innerText);
 }
 
 function operatorsEventListener() {
     operators.map(element => 
         element.addEventListener("click", () => {
-            if (resultTxt.value == "BRUH") clearAll();
-
-            if (isDigitClicked) {
-                numbers.push(Number(resultTxt.value));
-                
-                if (numbers.length > 2) numbers.shift();
-                
-                operate(operator);
-            }
-
-            isOperatorClicked = true;
-            isDigitClicked = false;
-            decimalCounter = 0;
-            operator = element.id;
-            updateActionTakenTxt(element);
+            handleOperators(element);
         }))
+}
+
+function handleOperators(element) {
+    if (resultTxt.value == "BRUH") clearAll();
+
+    if (isDigitClicked) {
+        numbers.push(Number(resultTxt.value));
+        
+        if (numbers.length > 2) numbers.shift();
+        
+        operate(operator);
+    }
+
+    isOperatorClicked = true;
+    isDigitClicked = false;
+    decimalCounter = 0;
+    operator = element.id;
+    updateActionTakenTxt(element);
 }
 
 function handleEqualsBtn() {
@@ -222,11 +237,113 @@ function handleBackspaceBtn() {
     let temp = resultTxt.value;
     temp = temp.slice(-1 * temp.length, -1);
     resultTxt.value = temp;
+
+    if (fontSize < (16 * 4)) {
+        fontSize += 8;
+        resultTxt.style.fontSize = `${fontSize}px`;
+    }
 }
 
 function handlePlusMinusBtn() {
     let temp = Number(resultTxt.value) * -1;
     resultTxt.value = temp;
+}
+
+function handleKeyboard(e) {
+    const key = e.keyCode;
+
+    if (!e.shiftKey) {
+        switch(key) {
+            // ESC
+            case 27:
+                clearAll();
+                break;
+            // BACKSPACE
+            case 8:
+                handleBackspaceBtn();
+                break;
+            // 1
+            case 49:
+            case 97:
+                handleDigits(document.getElementById("one-btn"));
+                break;
+            // 2
+            case 50:
+            case 98:
+                handleDigits(document.getElementById("two-btn"));
+                break;
+            // 3
+            case 51:
+            case 99:
+                handleDigits(document.getElementById("three-btn"));
+                break;
+            // 4
+            case 52:
+            case 100:
+                handleDigits(document.getElementById("four-btn"));
+                break;
+            // 5
+            case 53:
+            case 101:
+                handleDigits(document.getElementById("five-btn"));
+                break;
+            // 6
+            case 54:
+            case 102:
+                handleDigits(document.getElementById("six-btn"));
+                break;    
+            // 7
+            case 55:
+            case 103:
+                handleDigits(document.getElementById("seven-btn"));
+                break;
+            // 8
+            case 56:
+            case 104:
+                handleDigits(document.getElementById("eight-btn"));
+                break;
+            // 9
+            case 57:
+            case 105:
+                handleDigits(document.getElementById("nine-btn"));
+                break;
+            // *
+            case 106:
+                handleOperators(document.getElementById("mul")); 
+                break;
+            // +
+            case 107:
+                handleOperators(document.getElementById("add"));
+                break;    
+            // -
+            case 109:
+            case 189:
+                handleOperators(document.getElementById("sub")); 
+                break;
+            // /
+            case 111:
+            case 191:
+                handleOperators(document.getElementById("mul")); 
+                break;
+
+            // =
+            case 13:
+            case 187:
+                handleEqualsBtn(); 
+                break;
+        }
+    } else if (e.shiftKey) {
+        switch(key) {
+            // Shift +
+            case 187:
+                handleOperators(document.getElementById("add"));
+                break;
+            // Shift *
+            case 56:
+                handleOperators(document.getElementById("mul")); 
+                break;
+        }
+    }
 }
 
 function init() {
@@ -237,6 +354,7 @@ function init() {
     clearBtn.addEventListener("click", clearAll);
     backspaceBtn.addEventListener("click", handleBackspaceBtn);
     plusMinusBtn.addEventListener("click", handlePlusMinusBtn);
+    document.addEventListener("keydown", handleKeyboard);
 }
 
 init();
