@@ -250,6 +250,7 @@ function handlePlusMinusBtn() {
 }
 
 function handleKeyboard(e) {
+    console.log(e.keyCode)
     const key = e.keyCode;
 
     if (!e.shiftKey) {
@@ -307,6 +308,11 @@ function handleKeyboard(e) {
             case 105:
                 handleDigits(document.getElementById("nine-btn"));
                 break;
+            // 0
+            case 48:
+            case 96:
+                handleDigits(document.getElementById("zero-btn"));
+                break;
             // *
             case 106:
                 handleOperators(document.getElementById("mul")); 
@@ -325,7 +331,6 @@ function handleKeyboard(e) {
             case 191:
                 handleOperators(document.getElementById("div")); 
                 break;
-
             // =
             case 13:
             case 187:
