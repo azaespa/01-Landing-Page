@@ -312,6 +312,11 @@ function handleKeyboard(e) {
             case 96:
                 handleDigits(document.getElementById("zero-btn"));
                 break;
+            // .
+            case 110:
+            case 190:
+                handleDecimalBtn();
+                break;
             // *
             case 106:
                 handleOperators(document.getElementById("mul")); 
