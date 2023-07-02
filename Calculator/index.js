@@ -250,7 +250,6 @@ function handlePlusMinusBtn() {
 }
 
 function handleKeyboard(e) {
-    console.log(e.keyCode)
     const key = e.keyCode;
 
     if (!e.shiftKey) {
