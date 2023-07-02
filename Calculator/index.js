@@ -323,7 +323,7 @@ function handleKeyboard(e) {
             // /
             case 111:
             case 191:
-                handleOperators(document.getElementById("mul")); 
+                handleOperators(document.getElementById("div")); 
                 break;
 
             // =
@@ -331,6 +331,9 @@ function handleKeyboard(e) {
             case 187:
                 handleEqualsBtn(); 
                 break;
+
+            default:
+                return;
         }
     } else if (e.shiftKey) {
         switch(key) {
@@ -342,6 +345,8 @@ function handleKeyboard(e) {
             case 56:
                 handleOperators(document.getElementById("mul")); 
                 break;
+            default:
+                return;
         }
     }
 }

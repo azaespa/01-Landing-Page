@@ -185,3 +185,34 @@ input {
         width: 146px;
     }
 }
+
+@media (width >= 1024px) {
+    .calculator-body {
+        height: 766px;
+        width: 480px;
+    }
+
+    .display {
+        height: 172px;
+        width: 388px;
+    }
+
+    .buttons {
+        height: 475px;
+        width: 388px;
+    }
+
+    .buttons > * {
+        height: 82px;
+    }
+
+    .btn {
+        height: 82px;
+        width: 82px;
+    }
+
+    #zero-btn {
+        height: 82px;
+        width: 184px;
+    }
+}
