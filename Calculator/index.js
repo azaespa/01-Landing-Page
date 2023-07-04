@@ -28,9 +28,9 @@ let fontSize = 16 * 4;
 function updateActionTakenTxt(element) {
     let op = element.innerText;
     const num = numbers.length < 2 ? numbers[0] : numbers[1];
-    
+
     if (element.id == "equals") {
-        switch(operator) {
+        switch (operator) {
             case "add":
                 op = "+";
                 break;
@@ -44,7 +44,7 @@ function updateActionTakenTxt(element) {
                 op = "÷";
                 break;
         }
-        
+
         actionTakenTxt.value = numbers[1] != undefined ? `${numbers[0]} ${op} ${numbers[1]} =` : `${numbers[0]} =`;
 
         if (resultTxt.value == "BRUH") actionTakenTxt.value = "BRUH";
@@ -53,7 +53,7 @@ function updateActionTakenTxt(element) {
     }
 
     actionTakenTxt.value = `${num} ${op}`;
-    
+
     if (resultTxt.value == "BRUH") actionTakenTxt.value = "BRUH";
 
 }
@@ -65,7 +65,7 @@ function updateResultTxt(innerText) {
     if (isOperatorClicked) {
         resultTxt.value = "";
         isOperatorClicked = false;
-        
+
         fontSize = 16 * 4;
         resultTxt.style.fontSize = `${fontSize}px`;
     };
@@ -99,7 +99,7 @@ function operate(operatorId) {
     const firstNumber = numbers[0];
     let secondNumber = Number(resultTxt.value);
 
-    switch(operatorId) {
+    switch (operatorId) {
         case "add":
             resultTxt.value = firstNumber + secondNumber;
             break;
@@ -118,7 +118,7 @@ function operate(operatorId) {
         numbers.push(Number(resultTxt.value));
         numbers.shift();
         isLastActionOperator = true;
-    } 
+    }
 
     if (resultTxt.scrollWidth > resultTxt.clientWidth) {
         while (resultTxt.scrollWidth > resultTxt.clientWidth) {
@@ -139,8 +139,9 @@ function calculate(operatorId) {
 
     let firstNumber = isLastActionOperator ? numbers[1] : numbers[0];
     let secondNumber = veryLastNum;
+    console.log(isLastActionOperator, firstNumber);
 
-    switch(operatorId) {
+    switch (operatorId) {
         case "add":
             resultTxt.value = firstNumber + secondNumber;
             break;
@@ -154,7 +155,7 @@ function calculate(operatorId) {
             resultTxt.value = (firstNumber / secondNumber) == Infinity ? "BRUH" : firstNumber / secondNumber;
             break;
     }
-    
+
     numbers[0] = Number(resultTxt.value);
     numbers[1] = isLastActionOperator ? veryLastNum : numbers[1];
     isLastActionOperator = false;
@@ -181,8 +182,8 @@ function clearAll() {
     resultTxt.style.fontSize = `${fontSize}px`;
 }
 
-function digitsEventListener(){
-    digits.map(element => 
+function digitsEventListener() {
+    digits.map(element =>
         element.addEventListener("click", () => {
             handleDigits(element);
         }));
@@ -194,7 +195,7 @@ function handleDigits(element) {
 }
 
 function operatorsEventListener() {
-    operators.map(element => 
+    operators.map(element =>
         element.addEventListener("click", () => {
             handleOperators(element);
         }))
@@ -205,9 +206,9 @@ function handleOperators(element) {
 
     if (isDigitClicked) {
         numbers.push(Number(resultTxt.value));
-        
+
         if (numbers.length > 2) numbers.shift();
-        
+
         operate(operator);
     }
 
@@ -253,7 +254,7 @@ function handleKeyboard(e) {
     const key = e.keyCode;
 
     if (!e.shiftKey) {
-        switch(key) {
+        switch (key) {
             // ESC
             case 27:
                 clearAll();
@@ -291,7 +292,7 @@ function handleKeyboard(e) {
             case 54:
             case 102:
                 handleDigits(document.getElementById("six-btn"));
-                break;    
+                break;
             // 7
             case 55:
             case 103:
@@ -319,40 +320,40 @@ function handleKeyboard(e) {
                 break;
             // *
             case 106:
-                handleOperators(document.getElementById("mul")); 
+                handleOperators(document.getElementById("mul"));
                 break;
             // +
             case 107:
                 handleOperators(document.getElementById("add"));
-                break;    
+                break;
             // -
             case 109:
             case 189:
-                handleOperators(document.getElementById("sub")); 
+                handleOperators(document.getElementById("sub"));
                 break;
             // /
             case 111:
             case 191:
-                handleOperators(document.getElementById("div")); 
+                handleOperators(document.getElementById("div"));
                 break;
             // =
             case 13:
             case 187:
-                handleEqualsBtn(); 
+                handleEqualsBtn();
                 break;
 
             default:
                 return;
         }
     } else if (e.shiftKey) {
-        switch(key) {
+        switch (key) {
             // Shift +
             case 187:
                 handleOperators(document.getElementById("add"));
                 break;
             // Shift *
             case 56:
-                handleOperators(document.getElementById("mul")); 
+                handleOperators(document.getElementById("mul"));
                 break;
             default:
                 return;
