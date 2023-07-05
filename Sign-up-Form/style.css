@@ -112,8 +112,8 @@ input.invalid {
 }
 
 input[type="email"].invalid ~ label[for="email"]#alert, 
-input[type="password"].invalid ~ label[for="password"]#alert, 
-input[type="password"].invalid ~ label[for="confirm-password"]#alert {
+#password.invalid ~ label[for="password"]#alert, 
+#confirm-password.invalid ~ label[for="confirm-password"]#alert {
     display: block;
     color: red;
 }
@@ -145,7 +145,11 @@ p.have-account {
 p.terms {
     display: flex;
     align-items: center;
-    gap: 0.5rem
+    gap: 0.25rem;
+}
+
+p.terms > input[type="checkbox"] {
+    margin-right: 0.25rem;
 }
 
 .left {

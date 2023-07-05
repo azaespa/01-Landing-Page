@@ -4,6 +4,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("confirm-password");
 const createAccountBtn = document.getElementById("create-account");
+const signupWGoogle = document.getElementById("signup-w-google");
 const signupForm = document.querySelector(".signup-form");
 
 let timer = null;
@@ -94,8 +95,11 @@ confirmPassword.addEventListener("change", () => {
     }    
 })
 
+signupWGoogle.addEventListener("click", (e) => e.preventDefault());
+
 signupForm.addEventListener("submit", (e) => {    
     if (!isConfirmPasswordValid) {
         e.preventDefault();
     }
+    window.location.replace('http://127.0.0.1:5500/Sign-up-Form/index.html'); 
 })

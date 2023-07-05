@@ -17,7 +17,7 @@
         <div class="signup-form-container">
             <h2 class="signup-txt">Sign Up</h2>
             <p>Get access to your favorite music</p>
-            <form action class="signup-form" autocomplete="on">
+            <form action class="signup-form" method="get" autocomplete="off">
                 <label for="first-name">FIRST NAME</label>
                 <input type="text" name="firstName" id="first-name" required/>
                 <label for="last-name">LAST NAME</label>
@@ -33,11 +33,10 @@
                 <label for="confirm-password" id="alert">Password don't match.</label>
                 <p class="terms">
                     <input type="checkbox" name="terms" id="terms" required/>
-                    I agree to all the
-                    <a href="#">Terms and Conditions of use.</a>
+                    I agree to all the<a href="#"> Terms and Conditions of use.</a>
                 </p>
-                <button id="create-account">CREATE ACCOUNT</button>
-                <button id="signup-w-google">
+                <button type="submit" id="create-account">CREATE ACCOUNT</button>
+                <button id="signup-w-google" href="#">
                     <img src="src/Google__G__Logo.svg.webp" />SIGN UP WITH GOOGLE
                 </button>
             </form>
