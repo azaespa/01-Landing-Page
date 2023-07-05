@@ -29,6 +29,9 @@ Image - Always center the face
     border: 0;
     box-sizing: 0;
     color: var(--text);
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
 }
 
 body {
@@ -43,6 +46,10 @@ button {
     color: white;
     background-color: var(--primary-button);
     border-radius: 5px;
+}
+
+button:hover, .header:hover {
+    cursor: pointer;
 }
 
 button.logo {
@@ -84,11 +91,31 @@ input {
 input:not([type="checkbox"]) {
     padding: 0 0.5rem;
     width: 216px;
+    outline: none;
 }
 
 input[type="checkbox"]#terms {
     height: 12.5px;
     width: 12.5px;
+}
+
+input[type="email"] {
+    position: relative;
+}
+
+label#alert {
+    display: none;
+}
+
+input.invalid {
+    border: 1px solid red;
+}
+
+input[type="email"].invalid ~ label[for="email"]#alert, 
+input[type="password"].invalid ~ label[for="password"]#alert, 
+input[type="password"].invalid ~ label[for="confirm-password"]#alert {
+    display: block;
+    color: red;
 }
 
 button,
@@ -113,6 +140,12 @@ button,
 p.terms,
 p.have-account {
     font-size: 0.625rem;
+}
+
+p.terms {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem
 }
 
 .left {

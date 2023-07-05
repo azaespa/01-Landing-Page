@@ -17,17 +17,20 @@
         <div class="signup-form-container">
             <h2 class="signup-txt">Sign Up</h2>
             <p>Get access to your favorite music</p>
-            <form action class="signup-form" autocomplete="off">
+            <form action class="signup-form" autocomplete="on">
                 <label for="first-name">FIRST NAME</label>
-                <input type="text" name="first-name" id="first-name" required/>
+                <input type="text" name="firstName" id="first-name" required/>
                 <label for="last-name">LAST NAME</label>
-                <input type="text" name="last-name" id="last-name" required/>
+                <input type="text" name="lastName" id="last-name" required/>
                 <label for="email">EMAIL</label>
                 <input type="email" name="email" id="email" required/>
+                <label for="email" id="alert">Please input a valid email. (example@email.com)</label>
                 <label for="password">PASSWORD</label>
                 <input type="password" minlength="8" name="password" id="password" required/>
+                <label for="password" id="alert">Please enter minimum of 8 characters.</label>
                 <label for="confirm-password">CONFIRM PASSWORD</label>
                 <input type="password" minlength="8" name="confirm-password" id="confirm-password" required/>
+                <label for="confirm-password" id="alert">Password don't match.</label>
                 <p class="terms">
                     <input type="checkbox" name="terms" id="terms" required/>
                     I agree to all the
