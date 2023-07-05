@@ -14,7 +14,7 @@ Image - Always center the face
     --primary-button: #1f6b4a;
     --secondary-button: #e7f8f1;
     --accent: #19573c;
-    
+
     --fw-light: 300;
     --fw-regular: 400;
     --fw-bold: 700;
@@ -33,7 +33,6 @@ Image - Always center the face
 
 body {
     display: flex;
-    flex-direction: column;
 }
 
 a {
@@ -66,7 +65,7 @@ button#signup-w-google {
 }
 
 button#signup-w-google img {
-    height: 12px;    
+    height: 12px;
     width: 12px;
     margin-right: 0.3125rem;
 }
@@ -117,27 +116,33 @@ p.have-account {
 }
 
 .left {
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .header {
+    position: absolute;
+    top: 0;
     padding: 0rem .8rem;
     height: 3.625rem;
+    align-self: flex-start;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: 0.5rem;
 }
 
-.signup-form-container { 
+.signup-form-container {
     margin: 0rem .8rem;
     padding: 2.18rem 3.5rem;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
 }
 
@@ -147,10 +152,148 @@ p.have-account {
     margin-top: 0.6875rem;
 }
 
-.signup-form > *:not(input) {
+.signup-form>*:not(input) {
     margin-top: 0.875rem;
 }
 
 .have-account {
     margin-top: 1.2rem;
+}
+
+.right {
+    display: none;
+    background: url(src/pexels-sound-on-3756961.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+p.tagline {
+    padding-left: 1.5rem;
+    height: 3.625rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    font-weight: var(--fw-light);
+    color: var(--accent);
+}
+
+@media (width >=768px) {
+    .left {
+        width: 55.33vw;
+    }
+
+    .signup-form-container {
+        align-items: flex-start;
+    }
+
+    .right {
+        display: block;
+        width: 44.77vw;
+    }
+    
+    .logo-name {
+        font-size: 1.25rem;
+    }
+
+}
+
+@media (width >= 1024px) {
+    .left {
+        width: 44.77vw;
+    }
+    
+    .right {
+        background-size: 125%;
+        width: 55.33vw;
+    }    
+    
+    .logo-name {
+        font-size: 1.5rem;
+    }
+
+}    
+
+@media (width >= 1440px) {
+
+    .signup-form-container {
+        margin-top: 20px;
+    }    
+    
+    .header {
+        padding: 20px;
+    }    
+
+    button.logo {
+        background-size: 27px;
+        height: 59px;
+        width: 59px;
+    }        
+    button#signup-w-google img {
+        height: 16px;
+        width: 16px;
+        margin-right: 0.3125rem;
+    }
+
+    input,
+    button:not(.logo) {
+        height: 37px;
+        width: 314px;
+    }
+
+    input:not([type="checkbox"]) {
+        padding: 0 0.5rem;
+        width: 296px;
+    }
+
+    input[type="checkbox"]#terms {
+        height: 17px;
+        width: 17px;
+    }
+
+    h3 {
+        font-size: 2.25rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    label {
+        letter-spacing: 0.5px;
+    }
+
+    label,
+    button,
+    p.terms,
+    p.have-account {
+        font-size: 0.75rem;
+    }
+
+    p.tagline {
+        padding-top: 1rem;
+        padding-left: 2rem;
+        font-size: 2rem;
+    }
+}
+
+@media (width >= 1600px) {
+    .left {
+        width: 35vw;
+    }
+
+    .right {
+        width: 65vw;
+        background-size: cover;
+    }
+}
+
+@media (width >= 1920px) {
+    .left {
+        width: 30vw;
+    }
+
+    .right {
+        width: 70vw;
+    }
 }
