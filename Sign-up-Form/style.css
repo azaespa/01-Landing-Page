@@ -193,6 +193,10 @@ p.terms > input[type="checkbox"] {
     margin-top: 0.875rem;
 }
 
+#signup-w-google {
+    margin-top: 0.5rem;
+}
+
 .have-account {
     margin-top: 1.2rem;
 }
