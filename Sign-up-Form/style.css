@@ -5,3 +5,152 @@ Sign up form - always center center
 Fonts will change after > 768 wide
 Image - Always center the face
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+
+:root {
+    --text: #0b281b;
+    --background: #ffffff;
+    --primary-button: #1f6b4a;
+    --secondary-button: #e7f8f1;
+    --accent: #19573c;
+    
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-bold: 700;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: 0;
+    color: var(--text);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    color: var(--accent);
+}
+
+button {
+    color: white;
+    background-color: var(--primary-button);
+    border-radius: 5px;
+}
+
+button.logo {
+    background-image: url(src/odin-lined.png);
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 29px;
+    width: 29px;
+    border-radius: 50%;
+}
+
+button#signup-w-google {
+    color: var(--primary-button);
+    border: 1px solid var(--primary-button);
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button#signup-w-google img {
+    height: 12px;    
+    width: 12px;
+    margin-right: 0.3125rem;
+}
+
+input,
+button:not(.logo) {
+    height: 27.5px;
+    width: 233px;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+input:not([type="checkbox"]) {
+    padding: 0 0.5rem;
+    width: 216px;
+}
+
+input[type="checkbox"]#terms {
+    height: 12.5px;
+    width: 12.5px;
+}
+
+button,
+p.logo-name {
+    font-weight: var(--fw-bold);
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 0.75rem;
+}
+
+label {
+    letter-spacing: 0.5px;
+}
+
+label,
+button,
+p.terms,
+p.have-account {
+    font-size: 0.625rem;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.header {
+    padding: 0rem .8rem;
+    height: 3.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+}
+
+.signup-form-container { 
+    margin: 0rem .8rem;
+    padding: 2.18rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.6875rem;
+}
+
+.signup-form > *:not(input) {
+    margin-top: 0.875rem;
+}
+
+.have-account {
+    margin-top: 1.2rem;
+}

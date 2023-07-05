@@ -12,31 +12,33 @@
     <div class="left">
         <div class="header">
             <button class="logo"></button>
-            <h3 class="logo-name">ODIN</h3>
+            <p class="logo-name">ODIN</p>
         </div>
         <div class="signup-form-container">
             <h2 class="signup-txt">Sign Up</h2>
             <p>Get access to your favorite music</p>
-            <form action class="sign-up-form">
+            <form action class="signup-form" autocomplete="on">
                 <label for="first-name">FIRST NAME</label>
-                <input type="text" name="first-name" id="first-name" />
+                <input type="text" name="first-name" id="first-name" required/>
                 <label for="last-name">LAST NAME</label>
-                <input type="text" name="last-name" id="last-name" />
+                <input type="text" name="last-name" id="last-name" required/>
                 <label for="email">EMAIL</label>
-                <input type="text" name="email" id="email" />
+                <input type="email" name="email" id="email" required/>
                 <label for="password">PASSWORD</label>
-                <input type="text" name="password" id="password" />
+                <input type="password" minlength="8" name="password" id="password" required/>
                 <label for="confirm-password">CONFIRM PASSWORD</label>
-                <input type="text" name="confirm-password" id="confirm-password" />
-                <input type="checkbox" name="terms" id="terms" />
-                <label for="terms">I agree to all the
-                    <a href="#">Terms and Conditions of use.</a></label>
+                <input type="password" minlength="8" name="confirm-password" id="confirm-password" required/>
+                <p class="terms">
+                    <input type="checkbox" name="terms" id="terms" required/>
+                    I agree to all the
+                    <a href="#">Terms and Conditions of use.</a>
+                </p>
                 <button id="create-account">CREATE ACCOUNT</button>
-                <button id="sign-up-w-google">
-                    <img src="#" />SIGN UP WITH GOOGLE
+                <button id="signup-w-google">
+                    <img src="src/Google__G__Logo.svg.webp" />SIGN UP WITH GOOGLE
                 </button>
             </form>
-            <p>Already have an account? <a href="#">Sign in</a></p>
+            <p class="have-account">Already have an account? <a href="#">Sign in</a></p>
         </div>
     </div>
 
