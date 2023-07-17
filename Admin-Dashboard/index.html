@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-mobile-first.css">
+    <script src="https://kit.fontawesome.com/4148a7610f.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 
@@ -12,7 +13,14 @@
     <main class="container">
         <div class="content">
             <div class="sidebar left">
-
+                <h1 id="logo">Logo</h1>
+                <div class="nav">
+                    <h3><i class="fa-solid fa-house"></i><span>Home</span></h3>
+                    <h3><i class="fa-solid fa-code"></i><span>Projects</span></h3>
+                    <h3><i class="fa-solid fa-user"></i><span>About me</span></h3>
+                </div>
+                <i class="fa-solid fa-bars fa-lg menu"></i>
+                <h1 id="settings-btn">Settings</h1>
             </div>
             <div class="center">
                 <div class="header">
@@ -26,14 +34,16 @@
                             <img src="src/sample.jpeg" alt="" class="card-image">
                             <div class="card-content">
                                 <h2 class="card-title">Lorem, ipsum dolor.</h2>
-                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+                                <p class="card-description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                </p>
                             </div>
                         </div>
                         <div class="card stacked">
                             <img src="src/sample.jpeg" alt="" class="card-image">
                             <div class="card-content">
                                 <h2 class="card-title">Lorem, ipsum dolor.</h2>
-                                <p class="card-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                <p class="card-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                </p>
                             </div>
                         </div>
                         <div class="card stacked">
@@ -47,7 +57,8 @@
                             <img src="src/sample.jpeg" alt="" class="card-image">
                             <div class="card-content">
                                 <h2 class="card-title">Lorem, ipsum dolor.</h2>
-                                <p class="card-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                                <p class="card-description">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                </p>
                             </div>
                         </div>
                         <div class="card stacked">
@@ -73,22 +84,35 @@
                     <h2 class="profile-name">Paul James Azanes</h2>
                 </div>
                 <div class="section-sidebar-right">
-                    <h2 class="section-title-sidebar-right">Current Progress</h2>
-                    <div class="progress-card">
+                    <h2 class="section-title-sidebar-right">Currently Taking</h2>
+                    <div class="progress-card" id="pc-top">
                         <h3 class="progress-title">The Odin Project</h3>
                         <p class="progress-subtitle">Full Stack Javascript</p>
-                        <button class="seemore">See more</button>
+                        <button class="seemore" id="seemore-top">See more</button>
+                        <img src="src/top.png" id="pc-top-img" alt="The Odin Project">
                         <div class="circle-progress-bar">
                             <p class="progress-percentage">20%</p>
                         </div>
                     </div>
-                    <div class="progress-card">
+                    <div class="progress-card" id="pc-cs50x">
                         <h3 class="progress-title">CS50x</h3>
                         <p class="progress-subtitle">Memory</p>
-                        <button class="seemore">See more</button>
+                        <button class="seemore" id="seemore-cs50x">See more</button>
+                        <img src="src/Harvard_shield_wreath.svg" id="pc-top-img" alt="The Odin Project">
                         <div class="circle-progress-bar">
                             <p class="progress-percentage">40%</p>
                         </div>
+                    </div>
+                </div>
+                <div class="section-sidebar-right">
+                    <h2 class="section-title-sidebar-right">Overall Progress</h2>
+                    <h3 class="progress-title">The Odin Project</h3>
+                    <div class="progress-bar">
+                        <div class="progress" id="top"></div>
+                    </div>
+                    <h3 class="progress-title">CS50x</h3>
+                    <div class="progress-bar">
+                        <div class="progress" id="cs50x"></div>
                     </div>
                 </div>
             </div>

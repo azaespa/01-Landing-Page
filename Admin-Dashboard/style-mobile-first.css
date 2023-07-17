@@ -47,8 +47,29 @@ main.container {
     top: 0;
     left: 0;
     height: 3rem;
+    padding: 0 1rem;
     width: 100%;
     background-color: var(--background-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logo {
+    font-size: 1.25rem;
+}
+
+.nav {
+    display: none;
+}
+
+.menu {
+    display: block;
+}
+
+#settings-btn {
+    display: none;
+    font-size: 1.25rem;
 }
 
 .center {
@@ -151,6 +172,10 @@ main.container {
     background-color: white;
     grid-column: 7 / 9;
     padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
 }
 
 .profile-img {
@@ -175,23 +200,41 @@ main.container {
 }
 
 .progress-card {
-    background-color: silver;
+    background-color: #f4f4f4;
     border-radius: 10px;
     padding: 1rem;
+    position: relative;
     display: grid;
-    grid: repeat(4, fit-content(1fr)) / repeat(3, fit-content(1fr));
+    grid: repeat(4, 1fr) / repeat(2, 1fr);
+    grid-template-areas: 
+        "title title"
+        "subtitle subtitle"
+        ". ."
+        "seemore .";
+    overflow: hidden;
+}
+
+.progress-card > :not(img) {
+    z-index: 1;
+}
+
+.progress-card > img {
+    position: absolute;
+    align-self: center;
+    left: 30%;
+    width: 100%;
+    z-index: 0;
+    opacity: 90%;
 }
 
 .progress-title {
     font-size: 1rem;
-    grid-row: 1;
-    grid-column: 1 / 4;
+    grid-area: title;
 }
 
 .progress-subtitle {
     font-size: 0.8rem;
-    grid-row: 2;
-    grid-column: 1 / 4;
+    grid-area: subtitle;
 }
 
 .seemore {
@@ -199,13 +242,21 @@ main.container {
     height: 2rem;
     width: 5rem;
     font-size: 0.7rem;
-    grid-row: 4;
-    grid-column: 1 / 2;
+    grid-area: seemore;
+}
+
+#seemore-top {
+    color: white;
+    background-color: orange;
+}
+
+#seemore-cs50x {
+    color: white;
+    background-color: red;
 }
 
 .circle-progress-bar {
-    grid-row: 1 / 5;
-    grid-column: 3;
+    grid-area: circle-progress-bar;
     height: 80px;
     width: 80px;
     font-size: 1.5rem;
@@ -220,6 +271,33 @@ main.container {
     background: 
     radial-gradient(closest-side, white 79%, transparent 80% 100%),
     conic-gradient(red 20%, orange 0);  
+    display: none;
+}
+
+.progress-bar {
+    height: 0.25rem;
+    border-radius: 10px;
+    background-color: silver;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    height: 0.5rem;
+    border-radius: inherit;
+}
+
+.progress#top {
+    width: 60%;
+    background-color: orange;
+}
+
+.progress#cs50x {
+    width: 40%;
+    background-color: red;
 }
 
 @media (width >= 768px) {
@@ -259,11 +337,40 @@ main.container {
 
     .sidebar.left {
         position: unset;
+        padding: 2rem;
         height: 100%;
-        border-radius: 40px 0 0 40px;
         width: unset;
+        border-radius: 40px 0 0 40px;
         grid-column: 1 / 2;
-    }      
+        flex-direction: column;
+    }  
+    
+    .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;    
+    }
+
+    .nav > * {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .nav > * > i {
+        grid-column: 1;
+    }
+    
+    .nav > * > span {
+        grid-column: 2/4;
+    }
+    
+    .sidebar.left .menu {
+        display: none;
+    }
+
+    #settings-btn {
+        display: block;
+    }
 
     .center {
         height: 100%;
@@ -274,10 +381,6 @@ main.container {
         padding: 2.5rem;
         /* overflow-y: scroll; */
     }
-
-    .cards {
-        grid-template-columns: repeat(2, minmax(15rem, 1fr));
-    }    
 
     .sidebar.right {
         height: 100%;
@@ -290,6 +393,7 @@ main.container {
     }
     
     .header.sidebar-right {
+        margin: 2rem 0 0 0;
         display: flex;
     }
 
