@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap');
 
 :root {
     --background: #B4CDE3;
-    --background-main: #C7D1CA;
+    --background-main: #1D5B79;
     
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -10,6 +10,7 @@
     --fw-light: 300;
     --fw-regular: 400;
     --fw-semibold: 600;
+    --fw-bold: 900;
 }
 
 * {
@@ -20,7 +21,7 @@
 }
 
 body {
-    background-color: white;
+    background-color: #EEEDED;
     height: 100%;
     width: 100%;
     display: flex;
@@ -39,24 +40,66 @@ main.container {
 .content {
     display: flex;
     flex-direction: column-reverse;
-    background: linear-gradient(0deg, white 90%, var(--background-main) 10%);
+    /* background: linear-gradient(0deg, white 90%, var(--background-main) 10%); */
+    background-color: white;
 }
 
 .sidebar.left {
     position: absolute;
     top: 0;
     left: 0;
-    height: 3rem;
-    padding: 0 1rem;
+    padding: 1rem;
     width: 100%;
-    background-color: var(--background-main);
+    color: var(--background-main);
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
 #logo {
-    font-size: 1.25rem;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: white;
+    overflow: hidden;
+    display: grid;
+    grid-template-areas: 
+        "one two"
+        "one four"
+        "three four";
+    gap: 0.25rem;
+    /* background-image: url(src/odin-lined.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+
+.boxes {
+    height: 100%;
+    background-color: var(--background-main);
+}
+
+#boxes-1 {
+    grid-area: one;
+    background-color: #227aa6;
+}
+
+#boxes-2 {
+    grid-area: two;
+}
+
+#boxes-3 {
+    grid-area: three;
+}
+
+#boxes-4 {
+    grid-area: four;
+    background-color: #227aa6;
+}
+
+h3 {
+    font-size: 1rem;
 }
 
 .nav {
@@ -67,9 +110,8 @@ main.container {
     display: block;
 }
 
-#settings-btn {
+#logout-btn {
     display: none;
-    font-size: 1.25rem;
 }
 
 .center {
@@ -77,7 +119,6 @@ main.container {
     background-color: white;
     grid-column: 2 / 7;
     padding: 2.5rem;
-    /* overflow-y: scroll; */
 }
 
 .header {
@@ -102,7 +143,9 @@ main.container {
     width: 6.25rem;
     border-radius: 2rem;
     font-size: 1rem;
-    font-weight: var(--fw-semibold);
+    font-weight: var(--fw-regular);
+    color: white;
+    background-color: var(--background-main);
 }
 
 .section-title {
@@ -311,7 +354,8 @@ main.container {
     .content {
         display: flex;
         flex-direction: row;
-        background: linear-gradient(90deg, var(--background-main) 50%, white 50%);
+        /* background: linear-gradient(90deg, var(--background-main) 50%, white 50%); */
+        background: white;
     }
 }
 
@@ -328,7 +372,6 @@ main.container {
         height: 100%;
         width: 100%;
         border-radius: 40px;
-        background: linear-gradient(90deg, var(--background-main) 50%, white 50%);
         box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.04);
         position: relative;
         display: grid;
@@ -337,7 +380,7 @@ main.container {
 
     .sidebar.left {
         position: unset;
-        padding: 2rem;
+        padding: 3rem 2rem;
         height: 100%;
         width: unset;
         border-radius: 40px 0 0 40px;
@@ -351,16 +394,19 @@ main.container {
         gap: 1rem;    
     }
 
-    .nav > * {
+    .nav > *,
+    #logout-btn {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .nav > * > i {
+    .nav > * > i,
+    #logout-btn > i {
         grid-column: 1;
     }
     
-    .nav > * > span {
+    .nav > * > span,
+    #logout-btn > span {
         grid-column: 2/4;
     }
     
@@ -368,9 +414,6 @@ main.container {
         display: none;
     }
 
-    #settings-btn {
-        display: block;
-    }
 
     .center {
         height: 100%;
@@ -404,6 +447,11 @@ main.container {
 } 
 
 @media (width >= 1124px) {
+    #logo {
+        height: 4rem;    
+        width: 4rem;
+    }
+
     .cards {
         grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     }

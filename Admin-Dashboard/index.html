@@ -6,21 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style-mobile-first.css">
     <script src="https://kit.fontawesome.com/4148a7610f.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
     <main class="container">
         <div class="content">
             <div class="sidebar left">
-                <h1 id="logo">Logo</h1>
+                <button id="logo">
+                    <div class="boxes" id="boxes-1"></div>
+                    <div class="boxes" id="boxes-2"></div>
+                    <div class="boxes" id="boxes-3"></div>
+                    <div class="boxes" id="boxes-4"></div>
+                </button>
                 <div class="nav">
                     <h3><i class="fa-solid fa-house"></i><span>Home</span></h3>
-                    <h3><i class="fa-solid fa-code"></i><span>Projects</span></h3>
+                    <h3 class="current-page"><i class="fa-solid fa-code"></i><span>Projects</span></h3>
                     <h3><i class="fa-solid fa-user"></i><span>About me</span></h3>
+                    <h3><i class="fa-solid fa-gear"></i><span>Settings</span></h3>
                 </div>
                 <i class="fa-solid fa-bars fa-lg menu"></i>
-                <h1 id="settings-btn">Settings</h1>
+                <h3 id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Logout</span></h3>
             </div>
             <div class="center">
                 <div class="header">
