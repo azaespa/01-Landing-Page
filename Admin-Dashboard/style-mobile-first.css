@@ -126,7 +126,11 @@ h3 {
 
 .center {
     height: 100%;
+    background-image: url(src/blob-scene-haikei.png);
+    background-repeat: no-repeat;
+    background-size: cover;
     background-color: white;
+    background-position: left;
     grid-column: 2 / 7;
     padding: 2.5rem;
 }
@@ -145,6 +149,7 @@ h3 {
 }
 
 .dashboard-title {
+    color: var(--background-main);
     font-size: 2rem;
 }
 
@@ -159,6 +164,7 @@ h3 {
 }
 
 .section-title {
+    color: var(--background-main);
     font-size: 1.5rem;
     font-weight: var(--fw-regular);
     opacity: 50%;
@@ -168,18 +174,32 @@ h3 {
     margin: 1rem 0;
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     grid-template-rows: auto;
 }
 
 .card {
-    border-radius: 20px;
-    aspect-ratio: 1 / 1.15;
-    background-color: #d9d9d9;
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    aspect-ratio: 1.5 / 1;
+    background-color: #f4f4f4;
     backdrop-filter: blur(0);
     overflow: hidden;
+    display: grid;
+    grid-template-areas: 
+        "info info img img"
+        "info info img img"
+        "info info img img"
+        ". . buttons buttons";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1rem;
 }
 
+.buttons > * {
+    background: transparent;
+}
+/* 
 .stacked {
     display: grid;
 }
@@ -187,13 +207,30 @@ h3 {
 .stacked > * {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
+} */
+
+.card-info {
+    grid-area: info;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 7;
 }
 
-.card-image {
+.card-img {
+    grid-area: img;
     height: 100%;
     width: 100%;
-    aspect-ratio: 1 / 1;
+    border-radius: 10%;
     object-fit: cover;
+}
+
+.buttons {
+    grid-area: buttons;
+    display: flex;
+    gap: 1rem;
+    align-self: end;
+    justify-self: end;
 }
 
 .card-content {
@@ -365,8 +402,6 @@ h3 {
     .content {
         display: flex;
         flex-direction: row;
-        /* background: linear-gradient(90deg, var(--background-main) 50%, white 50%); */
-        background: white;
     }
 }
 
@@ -384,6 +419,7 @@ h3 {
         width: 100%;
         border-radius: 40px;
         box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.04);
+        /* background: linear-gradient(0deg, white 50%, #f4f4f4 50%); */
         position: relative;
         display: grid;
         grid: 1fr / repeat(8, 1fr);
@@ -439,7 +475,6 @@ h3 {
     .sidebar.right {
         height: 100%;
         min-width: 320px;
-        border-radius: inherit;
         background-color: white;
         box-shadow: -11px 0px 30px 0px rgba(0, 0, 0, 0.04);
         grid-column: 7 / 9;
@@ -463,7 +498,11 @@ h3 {
         width: 3rem;
     }
 
+    
+}
+
+@media (width >= 1790px) {
     .cards {
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        grid-template-columns: repeat(3, minmax(15rem, 1fr));
     }
 }
