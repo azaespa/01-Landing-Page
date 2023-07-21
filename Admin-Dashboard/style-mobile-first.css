@@ -2,7 +2,7 @@
 
 :root {
     --background: #B4CDE3;
-    --background-main: #1D5B79;
+    --background-main: #094563;
     
     font-family: 'Inter', sans-serif;
     font-size: 16px;
@@ -57,10 +57,20 @@ main.container {
     justify-content: space-between;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#logo-name {
+    font-size: 1.25rem;
+}
+
 #logo {
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 10% 50% 50% 10%;
     background-color: white;
     overflow: hidden;
     display: grid;
@@ -82,7 +92,7 @@ main.container {
 
 #boxes-1 {
     grid-area: one;
-    background-color: #227aa6;
+    background-color: #0d597e;
 }
 
 #boxes-2 {
@@ -95,7 +105,7 @@ main.container {
 
 #boxes-4 {
     grid-area: four;
-    background-color: #227aa6;
+    background-color: #0d597e;
 }
 
 h3 {
@@ -286,16 +296,17 @@ h3 {
     width: 5rem;
     font-size: 0.7rem;
     grid-area: seemore;
+    background-color: var(--background-main);
 }
 
 #seemore-top {
     color: white;
-    background-color: orange;
+    /* background-color: orange; */
 }
 
 #seemore-cs50x {
     color: white;
-    background-color: red;
+    /* background-color: red; */
 }
 
 .circle-progress-bar {
@@ -380,7 +391,7 @@ h3 {
 
     .sidebar.left {
         position: unset;
-        padding: 3rem 2rem;
+        padding: 3rem 1rem;
         height: 100%;
         width: unset;
         border-radius: 40px 0 0 40px;
@@ -448,8 +459,8 @@ h3 {
 
 @media (width >= 1124px) {
     #logo {
-        height: 4rem;    
-        width: 4rem;
+        height: 3rem;    
+        width: 3rem;
     }
 
     .cards {
