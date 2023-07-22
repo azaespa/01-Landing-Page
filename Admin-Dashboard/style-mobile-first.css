@@ -3,7 +3,7 @@
 :root {
     --background: #B4CDE3;
     --background-main: #094563;
-    
+
     font-family: 'Inter', sans-serif;
     font-size: 16px;
 
@@ -21,7 +21,6 @@
 }
 
 body {
-    background-color: #EEEDED;
     height: 100%;
     width: 100%;
     display: flex;
@@ -74,7 +73,7 @@ main.container {
     background-color: white;
     overflow: hidden;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "one two"
         "one four"
         "three four";
@@ -140,7 +139,7 @@ h3 {
     margin: 1rem 0;
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
 .header.sidebar-right {
@@ -188,7 +187,7 @@ h3 {
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     overflow: hidden;
     display: grid;
-    grid-template-areas: 
+    grid-template-areas:
         "info info img img"
         "info info img img"
         "info info img img"
@@ -198,9 +197,10 @@ h3 {
     gap: 1rem;
 }
 
-.buttons > * {
+.buttons>* {
     background: transparent;
 }
+
 /* 
 .stacked {
     display: grid;
@@ -307,7 +307,7 @@ h3 {
     position: relative;
     display: grid;
     grid: repeat(4, 1fr) / repeat(2, 1fr);
-    grid-template-areas: 
+    grid-template-areas:
         "title title"
         "subtitle subtitle"
         ". ."
@@ -315,11 +315,11 @@ h3 {
     overflow: hidden;
 }
 
-.progress-card > :not(img) {
+.progress-card> :not(img) {
     z-index: 1;
 }
 
-.progress-card > img {
+.progress-card>img {
     position: absolute;
     align-self: center;
     left: 30%;
@@ -370,9 +370,9 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: 
-    radial-gradient(closest-side, white 79%, transparent 80% 100%),
-    conic-gradient(red 20%, orange 0);  
+    background:
+        radial-gradient(closest-side, white 79%, transparent 80% 100%),
+        conic-gradient(red 20%, orange 0);
     display: none;
 }
 
@@ -402,35 +402,40 @@ h3 {
     background-color: red;
 }
 
-@media (width >= 612px) {
+@media (width >=612px) {
     .center {
         background-position: center;
     }
 }
 
-@media (width >= 768px) {
+@media (width >=768px) {
     main.container {
         /* height: 100vh;
         width: 100vw;
         padding: 1rem; */
         height: 100vh;
     }
-    
+
     .content {
         display: flex;
         flex-direction: row;
     }
 }
 
-@media (width >= 1024px) {
+@media (width >=1024px) {
+
+    body {
+        background-color: #EEEDED;
+    }
+
     main.container {
         margin-top: 0;
         padding: 1rem;
         display: flex;
         align-items: center;
-        justify-content: center;    
+        justify-content: center;
     }
-    
+
     .content {
         height: 100%;
         width: 100%;
@@ -450,30 +455,30 @@ h3 {
         border-radius: 40px 0 0 40px;
         grid-column: 1 / 2;
         flex-direction: column;
-    }  
-    
+    }
+
     .nav {
         display: flex;
         flex-direction: column;
-        gap: 1rem;    
+        gap: 1rem;
     }
 
-    .nav > *,
+    .nav>*,
     #logout-btn {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .nav > * > i,
-    #logout-btn > i {
+    .nav>*>i,
+    #logout-btn>i {
         grid-column: 1;
     }
-    
-    .nav > * > span,
-    #logout-btn > span {
+
+    .nav>*>span,
+    #logout-btn>span {
         grid-column: 2/4;
     }
-    
+
     .sidebar.left .menu {
         display: none;
     }
@@ -486,7 +491,38 @@ h3 {
         box-shadow: -11px 0px 30px 0px rgba(0, 0, 0, 0.04);
         grid-column: 2 / 7;
         padding: 2.5rem;
+        overflow-y: hidden;
+    }
+
+    @media (hover: none) {
+        .center {
+            overflow-y: scroll;
+        }
+    }
+
+    .center:hover {
         overflow-y: scroll;
+    }
+
+    /* width */
+    ::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
     }
 
     .sidebar.right {
@@ -498,7 +534,7 @@ h3 {
         grid-column: 7 / 9;
         padding: 0 2rem;
     }
-    
+
     .header.sidebar-right {
         margin: 2rem 0 0 0;
         display: flex;
@@ -506,23 +542,19 @@ h3 {
 
     .section-title-sidebar-right {
         align-self: flex-start;
-    }    
-
-} 
-
-@media (width >= 1124px) {
-    
-    .center {
-        overflow-y: visible;
     }
+
+}
+
+@media (width >=1124px) {
 
     .cards {
         grid-template-columns: repeat(2, minmax(15rem, 1fr));
     }
-    
+
 }
 
-@media (width >= 1790px) {
+@media (width >=1790px) {
     .cards {
         grid-template-columns: repeat(3, minmax(15rem, 1fr));
     }
