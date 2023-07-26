@@ -20,6 +20,25 @@
     Button for each books display to remove it from the library
     Button for each books display to change its read status
     -->
+    <dialog>
+        <div class="dialog-header">
+            <h2 class="dialog-title">Add a new book</h2>
+            <button><i class="fa-solid fa-xmark fa-xl"></i></button>
+        </div>
+        <div class="form-container">
+            <div class="upload-img">
+                <i class="fa-solid fa-image fa-2x"></i>
+                <p>Upload a book cover</p>
+            </div>
+            <form method="dialog">
+                <input type="text" placeholder="Title">
+                <input type="text" placeholder="Author">
+                <input type="number" placeholder="Pages">
+                <p>Have you read it? <input type="checkbox"></p>
+                <button>Submit</button>
+            </form>
+        </div>
+    </dialog>
     <main>
         <header>
             <nav>
@@ -31,8 +50,8 @@
             </nav>
         </header>
         <div class="content">
-            <div class="card">
-                <div class="cover" id="add-new-book">
+            <div class="card" id="add-new-book">
+                <div class="cover">
                     <i class="fa-solid fa-circle-plus fa-3x"></i>
                 </div>
                 <h3 class="book-title">Add a new book</h3>

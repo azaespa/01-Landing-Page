@@ -138,6 +138,109 @@ nav {
     text-align: center;
 }
 
+dialog {
+    width: 457px;
+    height: 337px;
+    margin-left: -228.5px;
+    margin-top: -168.5px;
+    border-radius: 30px;
+    padding: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background: var(--background);
+}
+
+dialog::backdrop {
+    background: rgba(26, 26, 35, 0.60);
+}
+
+.dialog-title {
+    font-size: 1.25rem;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: repeat(2, 191px);
+    gap: 1rem;
+}
+
+.dialog-header {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dialog-header > button {
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.dialog-header > button:focus {
+    outline: none;
+}
+
+.upload-img {
+    height: 233px;
+    border-radius: 20px;
+    color: var(--dark-grey);
+    background-color: var(--light-grey);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.upload-img:hover {
+    cursor: not-allowed;
+}
+
+.upload-img p {
+    font-size: 0.75rem;
+}
+
+.form-container form {
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-container form > input {
+    height: 2.25rem;
+    padding: 0 1rem;
+    border-radius: 5px;
+    background-color: var(--light-grey);
+}
+
+.form-container form > input::placeholder {
+    color: var(--dark-grey);
+}
+
+.form-container form > input:focus {
+    outline: none;
+}
+
+.form-container form > p {
+    display: flex;
+    align-self: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-container form > button:last-child {
+    height: 2.25rem;
+    border-radius: 5px;
+    margin-top: auto;
+    color: var(--background);
+    background-color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: var(--fw-semibold);
+    cursor: pointer;
+}
+
 .sidebar { 
     width: 423px;
     height: 100vh;
