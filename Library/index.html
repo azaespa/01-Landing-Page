@@ -5,6 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4148a7610f.js" crossorigin="anonymous"></script>
     <title>Library</title>
 </head>
 
@@ -18,7 +20,36 @@
     Button for each books display to remove it from the library
     Button for each books display to change its read status
     -->
-    
+    <main>
+        <header>
+            <nav>
+                <a href="#" class="tabs books">Books</a>
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Genre, author, or book name">
+                    <button id="search-btn"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
+                </div>
+            </nav>
+        </header>
+        <div class="content">
+            <div class="card">
+                <div class="cover" id="add-new-book">
+                    <i class="fa-solid fa-circle-plus fa-3x"></i>
+                </div>
+                <h3 class="book-title">Add a new book</h3>
+                <p class="author">Emily A. Vander Veer</p>
+            </div>
+            <div class="card">
+                <div class="cover">
+                    <img src="src/js-for-dummies.jpg" alt="JavaScript for Dummies Book Cover">
+                </div>
+                <h3 class="book-title" title="JavaScript for Dummies">JavaScript for Dummies</h3>
+                <p class="author">Emily A. Vander Veer</p>
+            </div>
+        </div>
+    </main>
+    <div class="sidebar">
+
+    </div>
     <script src="index.js"></script>
 </body>
 

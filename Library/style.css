@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --background: #FDFDFD;
+    --primary: #4A80F0;
+    --secondary: #1A1A23;
+    --light-grey: #EBEBEB;
+    --grey: #B0B0B0;
+    --dark-grey: #8E8E8E;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+
+    --fw-light: 300;
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+}
+
+main {
+    padding: 0 2.5rem;
+    background-color: var(--background);
+    width: 100%;
+    height: 100%;
+}
+
+header {
+    width: 100%;
+    height: 6rem;
+    margin-bottom: 1rem;
+}
+
+nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tabs {
+    width: 5rem;
+    height: 2.5rem;
+    color: var(--secondary);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+    text-align: center;
+}
+
+.books {
+    border-bottom: 2px solid var(--primary);
+}
+
+.search-bar {
+    width: 22rem;
+    height: 2.5rem;
+    padding: 0 1.25rem;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#search-input {
+    width: 100%;
+    font-size: 1rem;
+    color: var(--secondary);
+    background-color: transparent;
+}
+
+#search-input::placeholder {
+    color: grey;
+}
+
+#search-input:focus {
+    outline: none;
+}
+
+#search-btn {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--dark-grey);
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 11.625rem);
+    gap: 3rem;
+}
+
+.card:hover {
+    cursor: pointer;
+}
+
+.cover {
+    height: 233px;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cover > img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.book-title {
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+    font-weight: var(--fw-bold);
+    text-align: center;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+}
+
+.author {
+    color: var(--dark-grey);
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.sidebar { 
+    width: 423px;
+    height: 100vh;
+    background-color: var(--secondary);
+    align-self: end;
+}
