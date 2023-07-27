@@ -23,19 +23,21 @@
     <dialog>
         <div class="dialog-header">
             <h2 class="dialog-title">Add a new book</h2>
-            <button><i class="fa-solid fa-xmark fa-xl"></i></button>
+            <form method="dialog">
+                <button><i class="fa-solid fa-xmark fa-xl"></i></button>
+            </form>
         </div>
         <div class="form-container">
             <div class="upload-img">
                 <i class="fa-solid fa-image fa-2x"></i>
                 <p>Upload a book cover</p>
             </div>
-            <form method="dialog">
-                <input type="text" placeholder="Title">
-                <input type="text" placeholder="Author">
-                <input type="number" placeholder="Pages">
-                <p>Have you read it? <input type="checkbox"></p>
-                <button>Submit</button>
+            <form id="form-add-book" autocomplete="off">
+                <input id="form-book-title" name="formBookTitle" type="text" placeholder="Title" required>
+                <input id="form-book-author" name="formBookAuthor" type="text" placeholder="Author" required>
+                <input id="form-book-pages" name="formBookPages" type="number" placeholder="Pages" required>
+                <p>Have you read it? <input id="form-book-status" name="formBookStatus" type="checkbox"></p>
+                <button id="form-submit-book" type="submit">Submit</button>
             </form>
         </div>
     </dialog>
@@ -55,21 +57,21 @@
                     <i class="fa-solid fa-circle-plus fa-3x"></i>
                 </div>
                 <h3 class="book-title">Add a new book</h3>
-                <p class="author">Emily A. Vander Veer</p>
+                <p class="book-author">Emily A. Vander Veer</p>
             </div>
             <div class="card entry selected">
                 <div class="cover">
                     <img src="src/js-for-dummies.jpg" alt="JavaScript for Dummies Book Cover">
                 </div>
                 <h3 class="book-title" title="JavaScript for Dummies">JavaScript for Dummies</h3>
-                <p class="author">Emily A. Vander Veer</p>
+                <p class="book-author">Emily A. Vander Veer</p>
             </div>
             <div class="card entry">
                 <div class="cover">
                     <img src="src/js-for-dummies.jpg" alt="JavaScript for Dummies Book Cover">
                 </div>
                 <h3 class="book-title" title="JavaScript for Dummies">JavaScript for Dummies</h3>
-                <p class="author">Emily A. Vander Veer</p>
+                <p class="book-author">Emily A. Vander Veer</p>
             </div>
         </div>
     </main>
