@@ -4,6 +4,9 @@ const addNewBook = document.querySelector("#add-new-book");
 const formAddBook = document.querySelector("#form-add-book");
 
 const cardEntries = document.querySelectorAll(".card.entry");
+const readBookCovers = document.querySelectorAll(".card.read > .cover");
+
+const faReadIcon = '<i class="fa-solid fa-circle-check fa-4x read-icon" style="color: #497fef;"></i>';
 
 function Book(title, author, pages, read) {
     this.title = title;
@@ -13,6 +16,7 @@ function Book(title, author, pages, read) {
     this.createCard = function() {
         const card = document.createElement("div");
         card.classList.add("card", "entry");
+        this.read && card.classList.add("read");
         
         const cover = document.createElement("div");
         const image = document.createElement("img");
@@ -30,6 +34,7 @@ function Book(title, author, pages, read) {
         bookAuthor.innerText = this.author;
 
         cover.append(image);
+        card.classList.contains("read") && (cover.innerHTML += faReadIcon);
         card.append(cover);
         card.append(bookTitle);
         card.append(bookAuthor);
@@ -48,11 +53,10 @@ addNewBook.addEventListener("click", function() {
     const formInputTexts = document.querySelectorAll("#form-add-book > input:not(input[type='checkbox'])");
     const formInputCheckbox = document.querySelector("#form-book-status")
 
+    formInputCheckbox.checked = false;
     for (input of formInputTexts) {
         input.value = "";
     }
-
-    formInputCheckbox.checked = false;
 });
 
 for (let entry of cardEntries) {
@@ -60,6 +64,10 @@ for (let entry of cardEntries) {
         document.querySelector(".selected").classList.remove("selected");
         entry.classList.toggle("selected"); 
     });
+}
+
+for (let cover of readBookCovers) {
+    cover.innerHTML += faReadIcon;
 }
 
 const theHobbit = new Book('The Hobbit', 'Bitoy', '11', 'not read yet');

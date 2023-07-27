@@ -119,6 +119,20 @@ nav {
     box-shadow: 0 0 0 10px var(--primary);
 }
 
+.card.read .cover {
+    position: relative;
+    background-color: var(--background);
+}
+
+.card.read .cover .read-icon {
+    position: absolute;
+    color: var(--primary);
+}
+
+.card.read .cover > img {
+    opacity: 5%;
+}
+
 .cover {
     height: 233px;
     border-radius: 20px;
