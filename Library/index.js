@@ -1,10 +1,15 @@
 const addNewBook = document.getElementById("add-new-book");
 const modal = document.querySelector("dialog");
-const cardEntry = document.querySelector(".card.entry");
+const cardEntries = document.querySelectorAll(".card.entry");
 
 addNewBook.addEventListener("click", function() { modal.showModal() });
 
-cardEntry.addEventListener("click", function() { console.log("THIS IS WORKING!!") })
+for (let entry of cardEntries) {
+    entry.addEventListener("click", function() { 
+        document.querySelector(".selected").classList.remove("selected");
+        entry.classList.toggle("selected"); 
+    });
+}
 
 function Book(title, author, pages, read) {
     this.title = title;
