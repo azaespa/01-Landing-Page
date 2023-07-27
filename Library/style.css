@@ -105,6 +105,20 @@ nav {
     cursor: pointer;
 }
 
+.card.selected {
+    background-color: var(--primary);
+}
+
+.card.selected > .book-title,
+.card.selected > .author {
+    color: var(--background);
+}   
+
+.selected {
+    border-radius: 20px;
+    box-shadow: 0 0 0 10px var(--primary);
+}
+
 .cover {
     height: 233px;
     border-radius: 20px;

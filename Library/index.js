@@ -1,7 +1,10 @@
 const addNewBook = document.getElementById("add-new-book");
 const modal = document.querySelector("dialog");
+const cardEntry = document.querySelector(".card.entry");
 
-addNewBook.addEventListener("click", function () { modal.showModal() });
+addNewBook.addEventListener("click", function() { modal.showModal() });
+
+cardEntry.addEventListener("click", function() { console.log("THIS IS WORKING!!") })
 
 function Book(title, author, pages, read) {
     this.title = title;
