@@ -3,6 +3,9 @@ const content = document.querySelector(".content");
 const addNewBook = document.querySelector("#add-new-book");
 const formAddBook = document.querySelector("#form-add-book");
 const sidebarBookCover = document.querySelector(".sidebar-book-cover");
+const sidebarBookTitle = document.querySelector(".sidebar-book-title");
+const sidebarBookAuthor = document.querySelector(".sidebar-book-author");
+const sidebarBookPages = document.querySelector(".sidebar-book-pages > span");
 const bookReadStatus = document.querySelector("#read-status > input[type='checkbox']");        
 const deleteBook = document.querySelector("#delete-book");
 
@@ -23,8 +26,10 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.createCard = function() {
-    const card = document.createElement("div");
     const readStatus = this.read;
+    const bookPages = this.pages;
+
+    const card = document.createElement("div");
     card.classList.add("card", "entry");
     card.id = this.id;
     this.read && card.classList.add("read");
@@ -59,6 +64,9 @@ Book.prototype.createCard = function() {
     
     card.addEventListener("click", function() {
         sidebarBookCover.src = image.src;
+        sidebarBookTitle.innerText = bookTitle.innerText;
+        sidebarBookAuthor.innerText = bookAuthor.innerText;
+        sidebarBookPages.innerText = bookPages;
         bookReadStatus.checked = readStatus;
     })
 }
@@ -103,7 +111,10 @@ for (const book of books) {
 if (books.length > 0) {
     document.getElementById(`${books[0].id}`).classList.add("selected");
     sidebarBookCover.src = books[0].imgSrc;
-    bookReadStatus.checked = books[0].read;
+    sidebarBookTitle.innerText = books[0].title;
+    sidebarBookAuthor.innerText = books[0].author;
+    sidebarBookPages.innerText = books[0].pages;
+    bookReadStatus.checked = books[0].read;    
 }
 
 bookReadStatus.addEventListener("click", function() {
