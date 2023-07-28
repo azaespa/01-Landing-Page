@@ -2,6 +2,7 @@ const modal = document.querySelector("dialog");
 const content = document.querySelector(".content");
 const addNewBook = document.querySelector("#add-new-book");
 const formAddBook = document.querySelector("#form-add-book");
+const deleteBook = document.querySelector("#delete-book");
 
 const cardEntries = document.querySelectorAll(".card.entry");
 const readBookCovers = document.querySelectorAll(".card.read > .cover");
@@ -12,6 +13,7 @@ let books = localStorage.key("Library") == null ? [] : JSON.parse(localStorage.g
 
 function Book(title, author, pages, read) {
     this.id = new Date().getTime();
+    this.imgSrc = "src/js-for-dummies.jpg";
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -23,11 +25,11 @@ Book.prototype.createCard = function() {
     card.classList.add("card", "entry");
     card.id = this.id;
     this.read && card.classList.add("read");
-    
+
     const cover = document.createElement("div");
     const image = document.createElement("img");
     cover.classList.add("cover");
-    image.src = "src/js-for-dummies.jpg";
+    image.src = this.imgSrc;
     image.alt = this.title;
 
     const bookTitle = document.createElement("h3");
@@ -47,7 +49,8 @@ Book.prototype.createCard = function() {
     content.append(card);
 
     card.addEventListener("click", function() {
-        document.querySelector(".selected").classList.remove("selected");
+        const cardSelected = document.querySelector(".card.selected")
+        cardSelected != null && cardSelected.classList.remove("selected");
         card.classList.toggle("selected");             
     })
 }
@@ -55,6 +58,7 @@ Book.prototype.createCard = function() {
 addNewBook.addEventListener("click", function() { 
     modal.showModal(); 
 
+    //RESET INPUT FIELDS
     const formInputTexts = document.querySelectorAll("#form-add-book > input:not(input[type='checkbox'])");
     const formInputCheckbox = document.querySelector("#form-book-status")
 
@@ -64,25 +68,25 @@ addNewBook.addEventListener("click", function() {
     }
 });
 
-for (let entry of cardEntries) {
-    entry.addEventListener("click", function() {
-        document.querySelector(".selected").classList.remove("selected");
-        entry.classList.toggle("selected"); 
-    });
-}
+// for (let entry of cardEntries) {
+//     entry.addEventListener("click", function() {
+//         document.querySelector(".selected").classList.remove("selected");
+//         entry.classList.toggle("selected"); 
+//     });
+// }
 
-for (let cover of readBookCovers) {
-    cover.innerHTML += faReadIcon;
-}
+// for (let cover of readBookCovers) {
+//     cover.innerHTML += faReadIcon;
+// }
 
 formAddBook.addEventListener("submit", function(event) {
     event.preventDefault();
     const bookTitle = event.currentTarget.formBookTitle.value;
     const bookAuthor = event.currentTarget.formBookAuthor.value;
     const bookPages = event.currentTarget.formBookPages.value;
-    const bookStatus = event.currentTarget.formBookStatus.checked;
+    const bookReadStatus = event.currentTarget.formBookStatus.checked;
     
-    const newBook = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
+    const newBook = new Book(bookTitle, bookAuthor, bookPages, bookReadStatus);
     
     books.push(newBook);
 
@@ -94,10 +98,28 @@ formAddBook.addEventListener("submit", function(event) {
 })
 
 for(const book of books) {
-    console.log(book);
-
-    const existingBook = new Book(book.title, book.author, book.pages, book.status);
+    const existingBook = new Book(book.title, book.author, book.pages, book.read);
     existingBook.id = book.id;
-
     existingBook.createCard();
+
+    document.getElementById(`${existingBook.id}`).addEventListener("click", function() {
+        const sidebarBookCover = document.querySelector(".sidebar-book-cover");
+        sidebarBookCover.src = existingBook.imgSrc;
+
+        const bookReadStatus = document.querySelector("#read-status > input[type='checkbox']");
+        bookReadStatus.checked = existingBook.read;
+    })
 }
+
+deleteBook.addEventListener("click", function() {
+    const cardSelected = document.querySelector(".card.selected");
+
+    for (const book of books) {
+        if (book.id == cardSelected.id) {
+            books.splice(books.indexOf(book), 1);
+            localStorage.setItem("Library", JSON.stringify(books));    
+            content.removeChild(cardSelected);
+        }
+    }
+    
+})

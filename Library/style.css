@@ -26,10 +26,14 @@
 }
 
 body {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: column;
+    grid-template-areas: "main sidebar";
 }
 
 main {
+    grid-area: main;
     padding: 0 2.5rem;
     background-color: var(--background);
     width: 100%;
@@ -56,7 +60,9 @@ nav {
     font-size: 1.25rem;
     font-weight: var(--fw-bold);
     text-decoration: none;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .books {
@@ -99,6 +105,14 @@ nav {
     display: grid;
     grid-template-columns: repeat(auto-fit, 11.625rem);
     gap: 3rem;
+}
+
+.card {
+    user-select: none; /* supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
 }
 
 .card:hover {
@@ -146,6 +160,12 @@ nav {
 .cover > img {
     height: 100%;
     object-fit: cover;
+
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 .book-title {
@@ -270,8 +290,76 @@ dialog::backdrop {
 }
 
 .sidebar { 
+    grid-area: sidebar;
     width: 423px;
     height: 100vh;
+    padding: 0 1.75rem 1.75rem;
     background-color: var(--secondary);
     align-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar-header {
+    width: 100%;
+    height: 6rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-title {
+    height: 2.5rem;
+    color: var(--background);
+    font-size: 1.25rem;
+    font-weight: var(--fw-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}   
+
+.sidebar-book-cover {
+    width: 270px;
+    height: 338px;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+}
+
+.sidebar-actions {
+    margin-top: auto;
+    display: flex;
+    gap: 1rem;
+}
+
+.read-status-container {
+    width: 322px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#read-status {
+    color: var(--background);
+    font-size: 1rem;
+    font-weight: var(--fw-semibold);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#read-status > input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    cursor: pointer;
+}
+
+#delete-book {
+    color: var(--background);
+    background-color: transparent;
+    cursor: pointer;
 }
