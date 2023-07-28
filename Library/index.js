@@ -142,6 +142,9 @@ deleteBook.addEventListener("click", function() {
             content.removeChild(cardSelected);
 
             sidebarBookCover.src = "";
+            sidebarBookTitle.innerText = "";
+            sidebarBookAuthor.innerText = "";
+            sidebarBookPages.innerText = "0";
             bookReadStatus.checked = false;
         }
     }
