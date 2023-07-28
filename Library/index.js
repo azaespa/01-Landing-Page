@@ -8,43 +8,48 @@ const readBookCovers = document.querySelectorAll(".card.read > .cover");
 
 const faReadIcon = '<i class="fa-solid fa-circle-check fa-4x read-icon" style="color: #497fef;"></i>';
 
+let books = localStorage.key("Library") == null ? [] : JSON.parse(localStorage.getItem("Library"));
+
 function Book(title, author, pages, read) {
+    this.id = new Date().getTime();
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.createCard = function() {
-        const card = document.createElement("div");
-        card.classList.add("card", "entry");
-        this.read && card.classList.add("read");
-        
-        const cover = document.createElement("div");
-        const image = document.createElement("img");
-        cover.classList.add("cover");
-        image.src = "src/js-for-dummies.jpg";
-        image.alt = this.title;
+}
 
-        const bookTitle = document.createElement("h3");
-        bookTitle.classList.add("book-title");
-        bookTitle.title = this.title;
-        bookTitle.innerText = this.title;
+Book.prototype.createCard = function() {
+    const card = document.createElement("div");
+    card.classList.add("card", "entry");
+    card.id = this.id;
+    this.read && card.classList.add("read");
+    
+    const cover = document.createElement("div");
+    const image = document.createElement("img");
+    cover.classList.add("cover");
+    image.src = "src/js-for-dummies.jpg";
+    image.alt = this.title;
 
-        const bookAuthor = document.createElement("p");
-        bookAuthor.classList.add("book-author");
-        bookAuthor.innerText = this.author;
+    const bookTitle = document.createElement("h3");
+    bookTitle.classList.add("book-title");
+    bookTitle.title = this.title;
+    bookTitle.innerText = this.title;
 
-        cover.append(image);
-        card.classList.contains("read") && (cover.innerHTML += faReadIcon);
-        card.append(cover);
-        card.append(bookTitle);
-        card.append(bookAuthor);
-        content.append(card);
+    const bookAuthor = document.createElement("p");
+    bookAuthor.classList.add("book-author");
+    bookAuthor.innerText = this.author;
 
-        card.addEventListener("click", function() {
-            document.querySelector(".selected").classList.remove("selected");
-            card.classList.toggle("selected");             
-        })
-    }
+    cover.append(image);
+    card.classList.contains("read") && (cover.innerHTML += faReadIcon);
+    card.append(cover);
+    card.append(bookTitle);
+    card.append(bookAuthor);
+    content.append(card);
+
+    card.addEventListener("click", function() {
+        document.querySelector(".selected").classList.remove("selected");
+        card.classList.toggle("selected");             
+    })
 }
 
 addNewBook.addEventListener("click", function() { 
@@ -70,8 +75,6 @@ for (let cover of readBookCovers) {
     cover.innerHTML += faReadIcon;
 }
 
-const theHobbit = new Book('The Hobbit', 'Bitoy', '11', 'not read yet');
-
 formAddBook.addEventListener("submit", function(event) {
     event.preventDefault();
     const bookTitle = event.currentTarget.formBookTitle.value;
@@ -80,7 +83,21 @@ formAddBook.addEventListener("submit", function(event) {
     const bookStatus = event.currentTarget.formBookStatus.checked;
     
     const newBook = new Book(bookTitle, bookAuthor, bookPages, bookStatus);
-    newBook.createCard();
+    
+    books.push(newBook);
 
+    localStorage.setItem("Library", JSON.stringify(books));
+    
+    newBook.createCard();
+    
     modal.close();
 })
+
+for(const book of books) {
+    console.log(book);
+
+    const existingBook = new Book(book.title, book.author, book.pages, book.status);
+    existingBook.id = book.id;
+
+    existingBook.createCard();
+}
