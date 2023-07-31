@@ -37,6 +37,7 @@ const gameController = (() => {
 
     const analyzeGame = () => {
         let isGameOver = false;
+        let isGameTie = false;
 
         const winningMoves = [
             [1, 2, 3],
@@ -60,9 +61,13 @@ const gameController = (() => {
                 !playerMoves.includes(currentRound().getCurrentOpponentSign())) {
                 isGameOver = true;
             }
+
+            if (!gameBoard.board.includes(undefined)) {
+                isGameTie = true;
+            }
         }
 
-        return { isGameOver };
+        return { isGameOver, isGameTie };
     }
 
     return { currentRound, analyzeGame };
@@ -74,13 +79,33 @@ const displayController = (() => {
 
     const updateMessage = () => {
         const playersTurnMessage = `${gameController.currentRound().getCurrentOpponentSign()}'s turn`;
-        const gameOverMessage = `winner is ${gameController.currentRound().getCurrentPlayerSign()}`;
-        const message = gameController.analyzeGame().isGameOver ? gameOverMessage : playersTurnMessage;
-        
-        return message;
+        const gameOverMessage = `Winner is ${gameController.currentRound().getCurrentPlayerSign()}`;
+        const gameTieMessage = `The game is tie!`;
+
+        if (gameController.analyzeGame().isGameOver) return gameOverMessage;
+        if (gameController.analyzeGame().isGameTie) return gameTieMessage;
+
+        return playersTurnMessage;
     }
-    
+
     message.textContent = updateMessage();
+    
+    const setAIMove = () => {
+        
+        const setRandomLegalMove = () => {
+            let vacantBoardIndexes = [];
+            
+            for (let i = 0; i < gameBoard.board.length; i++) {
+                if (gameBoard.board[i] == undefined) vacantBoardIndexes.push(i);
+            }
+            
+            let random = Math.floor(Math.random() * (vacantBoardIndexes.length - 1));
+
+            console.log(vacantBoardIndexes[random]);
+        }
+
+        return { setRandomLegalMove }
+    }
 
     for (let i = 0; i < fields.length; i++) {
         fields[i].addEventListener("click", () => {
@@ -91,6 +116,8 @@ const displayController = (() => {
             message.textContent = updateMessage();
             fields[i].textContent = gameBoard.getBoard(i);
             gameController.analyzeGame();
+
+            setAIMove().setRandomLegalMove();
         })
     }
 })();
