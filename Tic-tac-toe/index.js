@@ -4,34 +4,40 @@ const Player = (sign) => {
 
 const gameBoard = (() => {
     const board = new Array(9);
-    const setField = (index, sign) => {
+    const setBoard = (index, sign) => {
         board[index] = sign;
     }
-    const getField = (index) => {
+    const getBoard = (index) => {
         return board[index];
     }
 
-    return { board, setField, getField };
+    return { board, setBoard, getBoard };
 })();
 
 const gameController = (() => {
     const playerX = Player("X");
     const playerO = Player("O");
-    let currentPlayerSign = "";
-    let round = 1;
-    let isGameOver = false;
+    let round = 0;
 
-    const getCurrentPlayerSign = () => {
-        currentPlayerSign = (round % 2 == 1) ? playerX.sign : playerO.sign;
-        round++;
-        return currentPlayerSign;
-    };
+    const currentRound = () => {
+        const playRound = () => {
+            round++;
+        }
 
-    const getOpponentPlayerSign = () => {
-        return (currentPlayerSign == playerX.sign) ? playerO.sign : playerX.sign;
+        const getCurrentPlayerSign = () => {
+            return (round % 2 == 1) ? playerX.sign : playerO.sign;
+        }
+
+        const getCurrentOpponentSign = () => {
+            return (getCurrentPlayerSign() == playerX.sign) ? playerO.sign : playerX.sign;
+        }
+
+        return { playRound, getCurrentPlayerSign, getCurrentOpponentSign };
     }
 
     const analyzeGame = () => {
+        let isGameOver = false;
+
         const winningMoves = [
             [1, 2, 3],
             [4, 5, 6],
@@ -45,30 +51,34 @@ const gameController = (() => {
 
         for (const winningMove of winningMoves) {
             let playerMoves = [];
+
             for (const winningMoveValue of winningMove.values()) {
                 playerMoves.push(gameBoard.board[winningMoveValue - 1]);
             }
-            if (!playerMoves.includes(undefined)) {
-                if (!playerMoves.includes(getOpponentPlayerSign())) {
-                    console.log(playerMoves, winningMove);
-                    isGameOver = true;
-                }
+
+            if (!playerMoves.includes(undefined) &&
+                !playerMoves.includes(currentRound().getCurrentOpponentSign())) {
+                isGameOver = true;
             }
         }
-        console.log(`is game over: ${isGameOver}`)
-    } 
 
-    return { getCurrentPlayerSign, analyzeGame };
+        return { isGameOver };
+    }
+
+    return { currentRound, analyzeGame };
 })();
 
 const displayController = (() => {
     const fields = document.querySelectorAll(".field");
+    const message = document.querySelector(".message");
 
     for (let i = 0; i < fields.length; i++) {
         fields[i].addEventListener("click", () => {
-            if (fields[i].textContent != "") return;
-            gameBoard.setField(i, gameController.getCurrentPlayerSign());
-            fields[i].textContent = gameBoard.getField(i);
+            if (fields[i].textContent != "" || gameController.analyzeGame().isGameOver) return;
+
+            gameController.currentRound().playRound();
+            gameBoard.setBoard(i, gameController.currentRound().getCurrentPlayerSign());
+            fields[i].textContent = gameBoard.getBoard(i);
             gameController.analyzeGame();
         })
     }
