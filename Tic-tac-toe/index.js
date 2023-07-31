@@ -18,9 +18,10 @@ const gameController = (() => {
     const playerX = Player("X");
     const playerO = Player("O");
     let round = 0;
+    let playWithAI = true;
 
     const currentRound = () => {
-        const playRound = () => {
+        const play = () => {
             round++;
         }
 
@@ -32,7 +33,7 @@ const gameController = (() => {
             return (getCurrentPlayerSign() == playerX.sign) ? playerO.sign : playerX.sign;
         }
 
-        return { playRound, getCurrentPlayerSign, getCurrentOpponentSign };
+        return { play, getCurrentPlayerSign, getCurrentOpponentSign };
     }
 
     const analyzeGame = () => {
@@ -52,36 +53,52 @@ const gameController = (() => {
 
         for (const winningMove of winningMoves) {
             let playerMoves = [];
-
+            
             for (const winningMoveValue of winningMove.values()) {
                 playerMoves.push(gameBoard.board[winningMoveValue - 1]);
             }
-
+            
             if (!playerMoves.includes(undefined) &&
-                !playerMoves.includes(currentRound().getCurrentOpponentSign())) {
+            !playerMoves.includes(currentRound().getCurrentOpponentSign())) {
                 isGameOver = true;
             }
-
+            
             if (!gameBoard.board.includes(undefined)) {
                 isGameTie = true;
             }
         }
-
+        
         return { isGameOver, isGameTie };
     }
+    
+    return { playWithAI, currentRound, analyzeGame };
+})();
 
-    return { currentRound, analyzeGame };
+const aiController = (() => {
+    const getLegalIndex = () => {
+        let vacantBoardIndexes = [];
+        
+        for (let i = 0; i < gameBoard.board.length; i++) {
+            if (gameBoard.board[i] == undefined) vacantBoardIndexes.push(i);
+        }
+        
+        let random = vacantBoardIndexes[Math.floor(Math.random() * vacantBoardIndexes.length)];
+    
+        return { random };
+    }
+    
+    return { getLegalIndex }
 })();
 
 const displayController = (() => {
     const fields = document.querySelectorAll(".field");
     const message = document.querySelector(".message");
-
+    
     const updateMessage = () => {
         const playersTurnMessage = `${gameController.currentRound().getCurrentOpponentSign()}'s turn`;
         const gameOverMessage = `Winner is ${gameController.currentRound().getCurrentPlayerSign()}`;
         const gameTieMessage = `The game is tie!`;
-
+        
         if (gameController.analyzeGame().isGameOver) return gameOverMessage;
         if (gameController.analyzeGame().isGameTie) return gameTieMessage;
 
@@ -89,35 +106,27 @@ const displayController = (() => {
     }
 
     message.textContent = updateMessage();
-    
-    const setAIMove = () => {
-        
-        const setRandomLegalMove = () => {
-            let vacantBoardIndexes = [];
-            
-            for (let i = 0; i < gameBoard.board.length; i++) {
-                if (gameBoard.board[i] == undefined) vacantBoardIndexes.push(i);
-            }
-            
-            let random = Math.floor(Math.random() * (vacantBoardIndexes.length - 1));
-
-            console.log(vacantBoardIndexes[random]);
-        }
-
-        return { setRandomLegalMove }
-    }
 
     for (let i = 0; i < fields.length; i++) {
         fields[i].addEventListener("click", () => {
             if (fields[i].textContent != "" || gameController.analyzeGame().isGameOver) return;
 
-            gameController.currentRound().playRound();
+            gameController.currentRound().play();
             gameBoard.setBoard(i, gameController.currentRound().getCurrentPlayerSign());
             message.textContent = updateMessage();
             fields[i].textContent = gameBoard.getBoard(i);
             gameController.analyzeGame();
+            
+            if (gameController.playWithAI && !gameController.analyzeGame().isGameOver) {
+                const randomLegalIndex = aiController.getLegalIndex().random; 
 
-            setAIMove().setRandomLegalMove();
+                gameController.currentRound().play();
+                gameBoard.setBoard(randomLegalIndex, gameController.currentRound().getCurrentPlayerSign());
+                message.textContent = updateMessage();
+                fields[randomLegalIndex].textContent = gameBoard.getBoard(randomLegalIndex);
+                gameController.analyzeGame();
+                
+            }
         })
     }
 })();
