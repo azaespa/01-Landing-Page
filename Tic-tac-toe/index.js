@@ -72,12 +72,23 @@ const displayController = (() => {
     const fields = document.querySelectorAll(".field");
     const message = document.querySelector(".message");
 
+    const updateMessage = () => {
+        const playersTurnMessage = `${gameController.currentRound().getCurrentOpponentSign()}'s turn`;
+        const gameOverMessage = `winner is ${gameController.currentRound().getCurrentPlayerSign()}`;
+        const message = gameController.analyzeGame().isGameOver ? gameOverMessage : playersTurnMessage;
+        
+        return message;
+    }
+    
+    message.textContent = updateMessage();
+
     for (let i = 0; i < fields.length; i++) {
         fields[i].addEventListener("click", () => {
             if (fields[i].textContent != "" || gameController.analyzeGame().isGameOver) return;
 
             gameController.currentRound().playRound();
             gameBoard.setBoard(i, gameController.currentRound().getCurrentPlayerSign());
+            message.textContent = updateMessage();
             fields[i].textContent = gameBoard.getBoard(i);
             gameController.analyzeGame();
         })
