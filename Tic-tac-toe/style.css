@@ -1,19 +1,88 @@
-.gameboard {
-    font-size: 2rem;
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Itim&display=swap');
+
+:root {
+    --ff-itim: 'Itim', cursive;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;    
 }
 
-.field {
-    height: 100px;
-    width: 100px;
-    border: 1px solid red;
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.gameboard-container {
+    height: 100vh;
+    width: 100vw;
+    background-color: azure;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    height: 3rem;
+    width: 316px;
+    border-radius: 5px;
+    border: 2px solid darkslategrey;
+    color: black;
+    background: wheat;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.gameboard {
+    font-size: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    gap: 0.5rem;
+}
+
+.field {
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    border: 2px solid darkslategrey;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--ff-itim);
+    font-size: 4rem;
+}
+
+.field:hover {
+    cursor: pointer;
+}
+
+.field[data-winning-move = "true"] {
+    animation: scaleUp 1s infinite alternate;
+}
+
+@keyframes scaleUp {
+    100% { 
+        font-size: 5rem; 
+        color: red;
+    }
+}
+
 .message {
     font-size: 2rem;
+    font-weight: 800;
 }
 

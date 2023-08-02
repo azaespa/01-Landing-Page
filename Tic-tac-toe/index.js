@@ -4,21 +4,38 @@ const Player = (sign) => {
 
 const gameBoard = (() => {
     const board = new Array(9);
+    
     const setBoard = (index, sign) => {
         board[index] = sign;
     }
+    
     const getBoard = (index) => {
         return board[index];
     }
 
-    return { board, setBoard, getBoard };
+    const resetBoard = () => {
+        for (let i = 0; i < board.length; i++) {
+            board[i] = undefined;
+        }
+    }
+    
+    return { board, setBoard, getBoard, resetBoard };
 })();
 
 const gameController = (() => {
     const playerX = Player("X");
     const playerO = Player("O");
     let round = 0;
-    let playWithAI = true;
+    let playWithAI = false;
+
+    const resetGame = () => {
+        gameBoard.resetBoard();
+        console.log(gameBoard.board);
+        round = 0;
+        playWithAI = false;
+        analyzeGame().isGameOver = false;
+        analyzeGame().isGameTie = false;        
+    }
 
     const currentRound = () => {
         const play = () => {
@@ -61,6 +78,8 @@ const gameController = (() => {
             if (!playerMoves.includes(undefined) &&
             !playerMoves.includes(currentRound().getCurrentOpponentSign())) {
                 isGameOver = true;
+                displayController.styleWinningMove(winningMove);
+                console.log(isGameOver);
             }
             
             if (!gameBoard.board.includes(undefined)) {
@@ -71,7 +90,7 @@ const gameController = (() => {
         return { isGameOver, isGameTie };
     }
     
-    return { playWithAI, currentRound, analyzeGame };
+    return { playWithAI, currentRound, analyzeGame, resetGame };
 })();
 
 const aiController = (() => {
@@ -93,16 +112,36 @@ const aiController = (() => {
 const displayController = (() => {
     const fields = document.querySelectorAll(".field");
     const message = document.querySelector(".message");
+    const resetGame = document.querySelector("#reset-game");
     
+    const resetDisplay = () => {
+        for (const field of fields) {
+            field.textContent = "";
+        }
+        message.textContent = updateMessage();
+    }
+
     const updateMessage = () => {
-        const playersTurnMessage = `${gameController.currentRound().getCurrentOpponentSign()}'s turn`;
-        const gameOverMessage = `Winner is ${gameController.currentRound().getCurrentPlayerSign()}`;
-        const gameTieMessage = `The game is tie!`;
+        const playersTurnMessage = `PLAYER ${gameController.currentRound().getCurrentOpponentSign()} TURN`;
+        const gameOverMessage = `${gameController.currentRound().getCurrentPlayerSign()} WON!`;
+        const gameTieMessage = `THE GAME IS TIE!`;
         
         if (gameController.analyzeGame().isGameOver) return gameOverMessage;
         if (gameController.analyzeGame().isGameTie) return gameTieMessage;
 
         return playersTurnMessage;
+    }
+
+    const resetStyleWinningMove = () => {
+        for (let i = 0; i < fields.length; i++) {
+            fields[i].removeAttribute("data-winning-move");
+        }
+    }
+
+    const styleWinningMove = (winningMove) => {
+        for (let index of winningMove) {
+            fields[index - 1].setAttribute("data-winning-move", "true");
+        }
     }
 
     message.textContent = updateMessage();
@@ -116,8 +155,8 @@ const displayController = (() => {
             message.textContent = updateMessage();
             fields[i].textContent = gameBoard.getBoard(i);
             gameController.analyzeGame();
-            
-            if (gameController.playWithAI && !gameController.analyzeGame().isGameOver) {
+            console.log(gameBoard.board);       
+        if (gameController.playWithAI && !gameController.analyzeGame().isGameOver) {
                 const randomLegalIndex = aiController.getLegalIndex().random; 
 
                 gameController.currentRound().play();
@@ -129,4 +168,12 @@ const displayController = (() => {
             }
         })
     }
+
+    resetGame.addEventListener("click", () => {
+        gameController.resetGame();
+        resetDisplay();
+        resetStyleWinningMove();
+    });
+
+    return { styleWinningMove }
 })();

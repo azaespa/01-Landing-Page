@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/4148a7610f.js" crossorigin="anonymous"></script>
     <title>Tic tac toe</title>
 </head>
 <body>
-    <div class="gameboard">
-        <div class="field" data-index="1"></div>
-        <div class="field" data-index="2"></div>
-        <div class="field" data-index="3"></div>
-        <div class="field" data-index="4"></div>
-        <div class="field" data-index="5"></div>
-        <div class="field" data-index="6"></div>
-        <div class="field" data-index="7"></div>
-        <div class="field" data-index="8"></div>
-        <div class="field" data-index="9"></div>
+    <div class="gameboard-container">
+        <p class="message"></p>
+        <div class="gameboard">
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+            <div class="field"></div>
+        </div>
+        <button id="reset-game">RESET</button>
     </div>
-    <p class="message"></p>
     <script src="index.js"></script>
 </body>
 </html>
